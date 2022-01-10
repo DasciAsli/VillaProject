@@ -1,0 +1,82 @@
+﻿@model IEnumerable<AE_VillaProject_2021.Models.EntityFramework.Terms>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Şartlar Sayfası</h2>
+<p>
+    @Html.ActionLink("Yeni Şart Oluştur", "Create", null, new { @class = "btn btn-outline-dark" })
+</p>
+
+<div class="row">
+
+    <!-- ============================================================== -->
+    <!-- contextual table -->
+    <!-- ============================================================== -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Hakkımızda Sayfası</h5>
+            <div class="card-body">
+                <div class="table-responsive ">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-primary">
+                                <th>
+                                    <p>Başlık</p>
+                                </th>
+                                <th>
+                                    <p>Açıklama</p>
+                                </th>
+                                <th>
+                                    <p>Durum</p>
+                                </th>
+                                <th>
+                                    <p>Kayıt Tarihi</p>
+                                </th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+                                    <td>
+                                        @if (item.Description.Length > 30)
+                                        {
+                                            <p>@item.Description.Substring(0, 30) ..</p>
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IsActive)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RegisterDate)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Düzenle", "Edit", new { id = item.TermsId }, new { @class = "btn btn-outline-dark" }) |
+                                        @Html.ActionLink("Detay", "Details", new { id = item.TermsId }, new { @class = "btn btn-outline-dark" }) |
+                                        @Html.ActionLink("Sil", "Delete", new { id = item.TermsId }, new { @class = "btn btn-outline-dark" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

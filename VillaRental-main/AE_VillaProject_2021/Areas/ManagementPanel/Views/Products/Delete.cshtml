@@ -1,0 +1,253 @@
+﻿@model AE_VillaProject_2021.Models.EntityFramework.Products
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    List<string> propertiesList = new List<string>();
+
+    if (Model.ProductProperties.Barbecue == true)
+    {
+        propertiesList.Add("Barbekü");
+    }
+    if (Model.ProductProperties.Tv == true)
+    {
+        propertiesList.Add("Tv");
+    }
+    if (Model.ProductProperties.Wifi == true)
+    {
+        propertiesList.Add("Wifi");
+    }
+    if (Model.ProductProperties.Klima == true)
+    {
+        propertiesList.Add("Klima");
+    }
+    if (Model.ProductProperties.Sauna == true)
+    {
+        propertiesList.Add("Sauna");
+    }
+    if (Model.ProductProperties.Fridge == true)
+    {
+        propertiesList.Add("Buzdolabı");
+    }
+    if (Model.ProductProperties.Washer == true)
+    {
+        propertiesList.Add("Çamaşır Makinesi");
+    }
+    if (Model.ProductProperties.Gym == true)
+    {
+        propertiesList.Add("Spor");
+    }
+
+}
+
+<h2>Villa Silme Sayfası</h2>
+
+<h3>Bu villayı silmek istediğinize emin misiniz?</h3>
+<div>
+    <h4>Villa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Başlık")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.Label("AltBaşlık")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubTitle)
+        </dd>
+
+        <dt>
+            @Html.Label("Açıklama")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.Label("Fiyat")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Metrekare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Metrekare)
+        </dd>
+
+        <dt>
+            @Html.Label("Durum")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.Label("Kayıt Tarihi")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+
+        <dt>
+            @Html.Label("Depozito")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deposit)
+        </dd>
+        <dt>
+            @Html.Label("Kategoriler")
+        </dt>
+        <dd>
+            @foreach (var item in Model.Categories)
+            {
+                <span>@item.Name , </span>
+            }
+        </dd>
+
+        <dt>
+            @Html.Label("Adres")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductAddresses.Adress)
+        </dd>
+        <dt>
+            @Html.Label("Bölge")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductAddresses.Province.Name)
+        </dd>
+        <dt>
+            @Html.Label("İlçe")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductAddresses.District.Name)
+        </dd>
+        <dt>
+            @Html.Label("Şehir")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductAddresses.Towns.Name)
+        </dd>
+
+        <dt>
+            @Html.Label("Oda Sayısı")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductDetails.RoomCount)
+        </dd>
+        <dt>
+            @Html.Label("Banyo Sayısı")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductDetails.BathCount)
+        </dd>
+        <dt>
+            @Html.Label("Balkon Sayısı")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductDetails.BalconyCount)
+        </dd>
+        <dt>
+            @Html.Label("Garaj Sayısı")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductDetails.GarageCount)
+        </dd>
+        <dt>
+            @Html.Label("Havuz Sayısı")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductDetails.PoolCount)
+        </dd>
+        <dt>
+            @Html.Label("Kişi Sayısı")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductDetails.PersonCount)
+        </dd>
+
+        <dt>
+            @Html.Label("Özellikler")
+        </dt>
+        <dd>
+            @foreach (var item in propertiesList)
+            {
+                <span>@item , </span>
+            }
+        </dd>
+        <dt>
+            @Html.Label("Eğitim Yeri")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductNearPlace.Education)
+        </dd>
+
+        <dt>
+            @Html.Label("Eğitim Yeri Uzaklığı")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductNearPlace.EducationDistance)
+        </dd>
+        <dt>
+            @Html.Label("Hastane Yeri")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductNearPlace.Hospital)
+        </dd>
+
+        <dt>
+            @Html.Label("Hastane Yeri Uzaklığı")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductNearPlace.HospitalDistance)
+        </dd>
+        <dt>
+            @Html.Label("Ulaşım Tipi")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductNearPlace.TransportationType)
+        </dd>
+        <dt>
+            @Html.Label("Ulaşım Aracına Uzaklık")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductNearPlace.TransportationDisance)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color mb-5">
+            <input type="submit" value="Sil" class="btn btn-outline-dark" /> |
+            @Html.ActionLink("Anasayfa'ya Dön", "Index", null, new { @class = "btn btn-outline-dark" })
+        </div>
+    }
+</div>

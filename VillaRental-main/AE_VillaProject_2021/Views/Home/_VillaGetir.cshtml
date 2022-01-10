@@ -1,0 +1,142 @@
+﻿@model List<AE_VillaProject_2021.Models.EntityFramework.Products>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="section-title text-center">
+                <h2>Yeni Listelenen Villalar</h2>
+                <p>Yeni eklenen mülklerimizden hayalinizdeki evi bulun</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-4">
+                <div class="property-item">
+                    <div class="property-image bg-overlay-gradient-04">
+                        @foreach (var item2 in item.ProductImages.Where(x => x.IsActive == true).OrderBy(x => x.ProductImage).Take(1))
+                        {
+                            <img class="img-fluid" src="@item2.ImageUrl" alt="">
+                        }
+
+                        <div class="property-lable">
+                            @foreach (var item2 in item.Categories.Where(x => x.IsActive == true).OrderBy(x => x.CategoryId).Take(1))
+                            {
+                                <span class="badge badge-md bg-primary">@item2.Name</span>
+                            }
+                        </div>
+                        <span class="property-trending" title="trending"><i class="fas fa-bolt"></i></span>
+
+                        <div class="property-agent-popup">
+                            <a href="#"><i class="fas fa-camera"></i>@item.ProductImages.Count</a>
+                        </div>
+                    </div>
+                    <div class="property-details">
+                        <div class="property-details-inner">
+                            <h5 class="property-title"><a href="property-detail-style-01.html">@item.Title </a></h5>
+                            @if (item.ProductAddresses.Adress.Length > 25)
+                            {
+                                <span class="property-address"><i class="fas fa-map-marker-alt fa-xs"></i>@item.ProductAddresses.Adress.Substring(0, 25)..</span>
+                            }
+                            else
+                            {
+                                <span class="property-address"><i class="fas fa-map-marker-alt fa-xs"></i>@item.ProductAddresses.Adress</span>
+                            }
+                            <div class="property-price">$@item.Price<span> / gün</span> </div>
+                            <ul class="property-info list-unstyled d-flex">
+                                <li class="flex-fill property-bed"><i class="fas fa-users"></i>Kişi<span>@item.ProductDetails.PersonCount</span></li>
+                                <li class="flex-fill property-bath"><i class="fas fa-bath"></i>Banyo<span>@item.ProductDetails.BathCount</span></li>
+                                <li class="flex-fill property-m-sqft"><i class="far fa-square"></i>sqft<span>@item.Metrekare</span></li>
+                            </ul>
+                        </div>
+                        <div class="property-btn">
+                            @*@Html.ActionLink("Ayrıntılara Bakınız","VillaDetails",@item.ProductId,new {@class= "property-link" })*@
+                            <a class="property-link" href="/Home/VillaDetails/@item.ProductId">Ayrıntılara Bakınız</a>
+                            <ul class="property-listing-actions list-unstyled mb-0">
+                                <li class="property-compare">
+                                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="Compare" href="#"><i class="fas fa-exchange-alt"></i></a>
+                                </li>
+                                <li class="property-favourites">
+                                    <a onclick="favori(@(item.ProductId))" href="#">
+
+                                        @if (Session["Name"] != null)
+                                        {
+                                            var count = 0;
+                                            foreach (var item2 in (List<AE_VillaProject_2021.Models.EntityFramework.Users>)ViewBag.User)
+                                            {
+                                                foreach (var item3 in item2.FavoriProducts)
+                                                {
+                                                    if (item.ProductId == item3.ProductId)
+                                                    {
+                                                        <i class="fas fa-heart text-primary "></i>
+                                                        break;
+                                                    }
+                                                    else
+                                                    {
+                                                        count++;
+                                                    }
+
+                                                }
+                                                if (count == item2.FavoriProducts.Count)
+                                                {
+                                                    <i class="fas fa-heart"></i>
+                                                }
+                                            }
+
+                                        }
+                                        @if (Session["Name"] == null)
+                                        {
+                                            <i class="fas fa-heart"></i>
+                                        }
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="col-12 text-center">
+            <a class="btn btn-link" id="tümvillalar"><i class="fas fa-plus"></i>Tüm Villaları Listele</a>
+        </div>
+
+    </div>
+</div>
+
+@*Tüm villaların getirilmesi işlemi için oluşturulan script*@
+<script>
+    $(function () {
+        $('#tümvillalar').click(function () {
+            $.ajax({
+
+                url: '/Home/tümvillalar',
+                method: 'GET',
+                data: {},
+                success: function (data) {
+                    $('#Product').html(data);
+                },
+                error: function () {
+                    alert('Villalar Filtrelenemedi')
+                }
+
+            });
+        });
+    });
+
+</script>
+
+<script>
+    function favori(ProductId) {
+        $.ajax({
+            url: '/Account/AccountFavourite',
+            method: 'GET',
+            data: { ProductId },
+            success: function (data) {
+                alert("Başarılı");
+            },
+            error: function (data) {
+                alert("Başarısız");
+            }
+        });
+    };
+</script>

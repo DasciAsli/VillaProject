@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EA_VillaRental_2021_DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Abouts">
+    <Key>
+      <PropertyRef Name="AboutId" />
+    </Key>
+    <Property Name="AboutId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SubTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Products" Relationship="Self.ProductToCategories" FromRole="Categories" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Contacts">
+    <Key>
+      <PropertyRef Name="Contactıd" />
+    </Key>
+    <Property Name="Contactıd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adress" Type="String" MaxLength="600" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InstagramUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TwitterUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="YoutubeUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FacebookUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="DistrictId" />
+    </Key>
+    <Property Name="DistrictId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TownId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Towns" Relationship="Self.FK_District_Towns" FromRole="District" ToRole="Towns" />
+    <NavigationProperty Name="ProductAddresses" Relationship="Self.FK_ProductAddresses_District" FromRole="District" ToRole="ProductAddresses" />
+    <NavigationProperty Name="Province" Relationship="Self.FK_Province_District" FromRole="District" ToRole="Province" />
+  </EntityType>
+  <EntityType Name="FavoriProducts">
+    <Key>
+      <PropertyRef Name="FavoriId" />
+    </Key>
+    <Property Name="FavoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_FavoriProducts_Products" FromRole="FavoriProducts" ToRole="Products" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_FavoriProducts_Users" FromRole="FavoriProducts" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="ProductAddresses">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProvinceId" Type="Int32" Nullable="false" />
+    <Property Name="DistrictId" Type="Int32" Nullable="false" />
+    <Property Name="TownId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="District" Relationship="Self.FK_ProductAddresses_District" FromRole="ProductAddresses" ToRole="District" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_ProductAddresses_Products" FromRole="ProductAddresses" ToRole="Products" />
+    <NavigationProperty Name="Province" Relationship="Self.FK_ProductAddresses_Province" FromRole="ProductAddresses" ToRole="Province" />
+    <NavigationProperty Name="Towns" Relationship="Self.FK_ProductAddresses_Towns" FromRole="ProductAddresses" ToRole="Towns" />
+  </EntityType>
+  <EntityType Name="ProductDetails">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="RoomCount" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BathCount" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BalconyCount" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GarageCount" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PoolCount" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PersonCount" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_ProductDetails_Products" FromRole="ProductDetails" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="ProductImages">
+    <Key>
+      <PropertyRef Name="ProductImage" />
+    </Key>
+    <Property Name="ProductImage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_ProductImages_Products" FromRole="ProductImages" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="ProductNearPlace">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Education" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="EducationDistance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Hospital" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="HospitalDistance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransportationType" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="TransportationDisance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="RegisterDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_ProductNearPlace_Products" FromRole="ProductNearPlace" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="ProductProperties">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Tv" Type="Boolean" />
+    <Property Name="Klima" Type="Boolean" />
+    <Property Name="Wifi" Type="Boolean" />
+    <Property Name="Sauna" Type="Boolean" />
+    <Property Name="Fridge" Type="Boolean" />
+    <Property Name="Washer" Type="Boolean" />
+    <Property Name="Barbecue" Type="Boolean" />
+    <Property Name="Gym" Type="Boolean" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_ProductProperties_Products" FromRole="ProductProperties" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SubTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <Property Name="Metrekare" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Deposit" Type="Double" />
+    <NavigationProperty Name="FavoriProducts" Relationship="Self.FK_FavoriProducts_Products" FromRole="Products" ToRole="FavoriProducts" />
+    <NavigationProperty Name="ProductAddresses" Relationship="Self.FK_ProductAddresses_Products" FromRole="Products" ToRole="ProductAddresses" />
+    <NavigationProperty Name="ProductDetails" Relationship="Self.FK_ProductDetails_Products" FromRole="Products" ToRole="ProductDetails" />
+    <NavigationProperty Name="ProductImages" Relationship="Self.FK_ProductImages_Products" FromRole="Products" ToRole="ProductImages" />
+    <NavigationProperty Name="ProductNearPlace" Relationship="Self.FK_ProductNearPlace_Products" FromRole="Products" ToRole="ProductNearPlace" />
+    <NavigationProperty Name="ProductProperties" Relationship="Self.FK_ProductProperties_Products" FromRole="Products" ToRole="ProductProperties" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_Products" FromRole="Products" ToRole="Sales" />
+    <NavigationProperty Name="Categories" Relationship="Self.ProductToCategories" FromRole="Products" ToRole="Categories" />
+  </EntityType>
+  <EntityType Name="Province">
+    <Key>
+      <PropertyRef Name="ProvinceId" />
+    </Key>
+    <Property Name="ProvinceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DistrictId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="District" Relationship="Self.FK_Province_District" FromRole="Province" ToRole="District" />
+    <NavigationProperty Name="ProductAddresses" Relationship="Self.FK_ProductAddresses_Province" FromRole="Province" ToRole="ProductAddresses" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Sales">
+    <Key>
+      <PropertyRef Name="SalesId" />
+    </Key>
+    <Property Name="SalesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="TotalPrice" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Sales_Products" FromRole="Sales" ToRole="Products" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Sales_Users" FromRole="Sales" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Terms">
+    <Key>
+      <PropertyRef Name="TermsId" />
+    </Key>
+    <Property Name="TermsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="Towns">
+    <Key>
+      <PropertyRef Name="TowndId" />
+    </Key>
+    <Property Name="TowndId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="District" Relationship="Self.FK_District_Towns" FromRole="Towns" ToRole="District" />
+    <NavigationProperty Name="ProductAddresses" Relationship="Self.FK_ProductAddresses_Towns" FromRole="Towns" ToRole="ProductAddresses" />
+  </EntityType>
+  <EntityType Name="UserDetails">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="Age" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Tc" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="PassportNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_UserDetails_Users" FromRole="UserDetails" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="FavoriProducts" Relationship="Self.FK_FavoriProducts_Users" FromRole="Users" ToRole="FavoriProducts" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_Users" FromRole="Users" ToRole="Sales" />
+    <NavigationProperty Name="UserDetails" Relationship="Self.FK_UserDetails_Users" FromRole="Users" ToRole="UserDetails" />
+  </EntityType>
+  <Association Name="FK_District_Towns">
+    <End Role="Towns" Type="Self.Towns" Multiplicity="1" />
+    <End Role="District" Type="Self.District" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Towns">
+        <PropertyRef Name="TowndId" />
+      </Principal>
+      <Dependent Role="District">
+        <PropertyRef Name="TownId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductAddresses_District">
+    <End Role="District" Type="Self.District" Multiplicity="1" />
+    <End Role="ProductAddresses" Type="Self.ProductAddresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="DistrictId" />
+      </Principal>
+      <Dependent Role="ProductAddresses">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Province_District">
+    <End Role="District" Type="Self.District" Multiplicity="1" />
+    <End Role="Province" Type="Self.Province" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="DistrictId" />
+      </Principal>
+      <Dependent Role="Province">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FavoriProducts_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="FavoriProducts" Type="Self.FavoriProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="FavoriProducts">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FavoriProducts_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="FavoriProducts" Type="Self.FavoriProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="FavoriProducts">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductAddresses_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="ProductAddresses" Type="Self.ProductAddresses" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductAddresses">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductAddresses_Province">
+    <End Role="Province" Type="Self.Province" Multiplicity="1" />
+    <End Role="ProductAddresses" Type="Self.ProductAddresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Province">
+        <PropertyRef Name="ProvinceId" />
+      </Principal>
+      <Dependent Role="ProductAddresses">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductAddresses_Towns">
+    <End Role="Towns" Type="Self.Towns" Multiplicity="1" />
+    <End Role="ProductAddresses" Type="Self.ProductAddresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Towns">
+        <PropertyRef Name="TowndId" />
+      </Principal>
+      <Dependent Role="ProductAddresses">
+        <PropertyRef Name="TownId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductDetails_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="ProductDetails" Type="Self.ProductDetails" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductDetails">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductImages_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="ProductImages" Type="Self.ProductImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductImages">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductNearPlace_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="ProductNearPlace" Type="Self.ProductNearPlace" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductNearPlace">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductProperties_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="ProductProperties" Type="Self.ProductProperties" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductProperties">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDetails_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserDetails">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductToCategories">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="VillaContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Abouts" EntityType="Self.Abouts" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" />
+    <EntitySet Name="Contacts" EntityType="Self.Contacts" />
+    <EntitySet Name="District" EntityType="Self.District" />
+    <EntitySet Name="FavoriProducts" EntityType="Self.FavoriProducts" />
+    <EntitySet Name="ProductAddresses" EntityType="Self.ProductAddresses" />
+    <EntitySet Name="ProductDetails" EntityType="Self.ProductDetails" />
+    <EntitySet Name="ProductImages" EntityType="Self.ProductImages" />
+    <EntitySet Name="ProductNearPlace" EntityType="Self.ProductNearPlace" />
+    <EntitySet Name="ProductProperties" EntityType="Self.ProductProperties" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="Province" EntityType="Self.Province" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Sales" EntityType="Self.Sales" />
+    <EntitySet Name="Terms" EntityType="Self.Terms" />
+    <EntitySet Name="Towns" EntityType="Self.Towns" />
+    <EntitySet Name="UserDetails" EntityType="Self.UserDetails" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_District_Towns" Association="Self.FK_District_Towns">
+      <End Role="Towns" EntitySet="Towns" />
+      <End Role="District" EntitySet="District" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductAddresses_District" Association="Self.FK_ProductAddresses_District">
+      <End Role="District" EntitySet="District" />
+      <End Role="ProductAddresses" EntitySet="ProductAddresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Province_District" Association="Self.FK_Province_District">
+      <End Role="District" EntitySet="District" />
+      <End Role="Province" EntitySet="Province" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FavoriProducts_Products" Association="Self.FK_FavoriProducts_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="FavoriProducts" EntitySet="FavoriProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FavoriProducts_Users" Association="Self.FK_FavoriProducts_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="FavoriProducts" EntitySet="FavoriProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductAddresses_Products" Association="Self.FK_ProductAddresses_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductAddresses" EntitySet="ProductAddresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductAddresses_Province" Association="Self.FK_ProductAddresses_Province">
+      <End Role="Province" EntitySet="Province" />
+      <End Role="ProductAddresses" EntitySet="ProductAddresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductAddresses_Towns" Association="Self.FK_ProductAddresses_Towns">
+      <End Role="Towns" EntitySet="Towns" />
+      <End Role="ProductAddresses" EntitySet="ProductAddresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductDetails_Products" Association="Self.FK_ProductDetails_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductDetails" EntitySet="ProductDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductImages_Products" Association="Self.FK_ProductImages_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductImages" EntitySet="ProductImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductNearPlace_Products" Association="Self.FK_ProductNearPlace_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductNearPlace" EntitySet="ProductNearPlace" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductProperties_Products" Association="Self.FK_ProductProperties_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductProperties" EntitySet="ProductProperties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Products" Association="Self.FK_Sales_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Users" Association="Self.FK_Sales_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDetails_Users" Association="Self.FK_UserDetails_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserDetails" EntitySet="UserDetails" />
+    </AssociationSet>
+    <AssociationSet Name="ProductToCategories" Association="Self.ProductToCategories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="EA_VillaRental_2021_DbModel.sysdiagrams" />
+    <EntitySet Name="Messages" EntityType="EA_VillaRental_2021_DbModel.Messages" />
+  </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Messages">
+    <Key>
+      <PropertyRef Name="MessageId" />
+    </Key>
+    <Property Name="MessageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Mail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
+    <Property Name="Subject" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,146 @@
+﻿@model List<AE_VillaProject_2021.Models.EntityFramework.Contacts>
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section _Breadcrumb
+{
+    @Html.Partial("_Breadcrumb")
+}
+
+<!--Contact -->
+<section class="space-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Bizimle İletişime Geçin</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                @foreach (var item in Model)
+                {
+                    <div class="contact-address bg-light p-4">
+                        <div class="d-flex mb-3">
+                            <div class="contact-address-icon">
+                                <i class="flaticon-map text-primary font-xlll"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h6>Adres</h6>
+                                <p>@item.Adress</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="contact-address-icon">
+                                <i class="flaticon-email text-primary font-xlll"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h6>Email</h6>
+                                <p>@item.Email</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="contact-address-icon">
+                                <i class="flaticon-call text-primary font-xlll"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h6>Telefon</h6>
+                                <p>@item.PhoneNumber</p>
+                            </div>
+                        </div>
+
+                        <div class="social-icon-02">
+                            <div class="d-flex align-items-center">
+                                <h6 class="me-3">Sosyal Medya</h6>
+                                <ul class="list-unstyled mb-0 list-inline">
+                                    <li><a href="@item.FacebookUrl"> <i class="fab fa-facebook-f"></i> </a></li>
+                                    <li><a href="@item.TwitterUrl"> <i class="fab fa-twitter"></i> </a></li>
+                                    <li><a href="@item.InstagramUrl"> <i class="fab fa-instagram"></i> </a></li>
+                                    <li><a href="@item.YoutubeUrl"> <i class="fab fa-youtube"></i> </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="col-lg-7 mt-4 mt-lg-0">
+                <div class="contact-form">
+                    <h4 class="mb-4 text-uppercase">
+                        Yardıma mı ihtiyacınız var? Lütfen iletişim formunu doldurun
+                    </h4>
+
+                    @if (Session["Name"] == null)
+                    {
+                        using (Html.BeginForm("Message", "Home", FormMethod.Post))
+                        {
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <input type="text" class="form-control" id="name" placeholder="Ad" name="Name">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <input type="email" class="form-control" id="inputEmail4" placeholder="Mail" name="Mail">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <input type="text" class="form-control" id="phone" placeholder="Telefon Numarası" name="Phone">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <input type="text" class="form-control" id="subject" placeholder="Konu" name="Subject">
+                                </div>
+                                <div class="mb-3 col-md-12">
+                                    <textarea class="form-control" rows="4" placeholder="Mesaj" name="Message"></textarea>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary" type="submit">Mesaj Gönder</button>
+
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+
+                        using (Html.BeginForm("Message", "Home", FormMethod.Post))
+                        {
+                            foreach (var item in (List<AE_VillaProject_2021.Models.EntityFramework.Users>)ViewBag.User)
+                            {
+                                <div class="row">
+                                    <div class="mb-3 col-md-6">
+                                        <input type="text" class="form-control" id="name" placeholder="@item.Name" name="Name">
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <input type="email" class="form-control" id="inputEmail4" placeholder="@item.Email" name="Mail">
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <input type="text" class="form-control" id="phone" placeholder="@item.UserDetails.PhoneNumber" name="Phone">
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <input type="text" class="form-control" id="subject" placeholder="Konu" name="Subject">
+                                    </div>
+                                    <div class="mb-3 col-md-12">
+                                        <textarea class="form-control" rows="4" placeholder="Mesaj" name="Message"></textarea>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary" type="submit">Mesaj Gönder</button>
+
+                                    </div>
+                                </div>
+
+                            }
+                        }
+
+                    }
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+

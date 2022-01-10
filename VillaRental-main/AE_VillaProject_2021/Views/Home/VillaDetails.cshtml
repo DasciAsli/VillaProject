@@ -1,0 +1,427 @@
+﻿@model AE_VillaProject_2021.Models.EntityFramework.Products
+@{
+    ViewBag.Title = "VillaDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section _Breadcrumb
+{
+    @Html.Partial("_Breadcrumb")
+}
+
+
+<div class="wrapper mb-5">
+
+    <!-- Detaylar -->
+    <section class="space-pt">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0 order-lg-2">
+                    <div class="sticky-top">
+                        <div class="mb-4">
+                            <h3>@Model.Title</h3>
+                            <span class="d-block mb-3"><i class="fas fa-map-marker-alt fa-xs pe-2"></i>@Model.ProductAddresses.Adress</span>
+                            <span class="price font-xll text-primary d-block">$@Model.Price</span>
+                            <span class="sub-price font-lg text-dark d-block"><b>$@Model.Metrekare/Sqft </b> </span>
+                            <ul class="property-detail-meta list-unstyled ">
+                                <li><a href="#"> <i class="fas fa-star text-warning pe-2"></i>@ViewBag.favorioranı/@ViewBag.toplamüyesayısı </a></li>
+                                <li>
+                                    <a onclick="favori(@(Model.ProductId))" href="#">
+                                        @if (ViewBag.Durum != null)
+                                        {
+                                            if ((int)ViewBag.Durum == 1)
+                                            {
+                                                <i class="fas fa-heart text-primary"></i>
+
+                                            }
+                                            else
+                                            {
+                                                <i class="fas fa-heart"></i>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <i class="fas fa-heart"></i>
+                                        }
+
+                                    </a>
+                                </li>
+                                <li>
+
+                                </li>
+
+                            </ul>
+                            @if (Session["Name"] != null)
+                            {
+                                <a href="/Home/Kirala/@Model.ProductId" class="btn btn-primary align-items-center">Kirala</a>
+                            }
+                            else
+                            {
+                                <div class="alert alert-primary" role="alert">
+                                    Kiralama işlemi için üye olmanız gerekmekte.
+                                </div>
+                                <a href="/Home/Kirala/@Model.ProductId" class="btn btn-primary align-items-center disabled">Kirala</a>
+                            }
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-8 order-lg-1">
+                    <div class="property-detail-img popup-gallery">
+                        <div class="owl-carousel" data-animateOut="fadeOut" data-nav-arrow="true" data-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-xx-items="1" data-space="0" data-loop="true">
+                            @foreach (var item in Model.ProductImages.Where(x => x.IsActive == true).ToList())
+                            {
+                                <div class="item">
+                                    <a class="portfolio-img" href="@item.ImageUrl"><img class="img-fluid" src="@item.ImageUrl" alt=""></a>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                    <div class="property-info mt-5">
+                        <div class="row">
+                            <div class="col-sm-3 mb-3 mb-sm-0">
+                                <h5>Villa Detayları</h5>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <ul class="property-list list-unstyled">
+                                            <li><b>Property ID:</b> @Model.ProductId</li>
+                                            <li><b>Fiyat</b> $@Model.Price</li>
+                                            <li><b>Alan</b> @Model.Metrekare Sq Ft</li>
+                                            <li><b>Kişi Sayısı</b> @Model.ProductDetails.PersonCount</li>
+                                            <li><b>Oda Sayısı</b> @Model.ProductDetails.RoomCount</li>
+                                            <li><b>Balkon Sayısı</b> @Model.ProductDetails.BalconyCount</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <ul class="property-list list-unstyled">
+                                            <li><b>Garaj:</b> @Model.ProductDetails.GarageCount</li>
+                                            <li>
+                                                <b>Villa Tipi:</b>
+                                                @foreach (var item in Model.Categories)
+                                                {
+                                                    <span> @item.Name ,</span>
+                                                }
+                                            </li>
+
+                                            <li><b>Banyo Sayısı</b> @Model.ProductDetails.BathCount</li>
+                                            <li><b>Havuz Sayısı:</b> @Model.ProductDetails.PoolCount</li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <h6 class="text-primary mb-3 mb-sm-0 ">Ek Detaylar</h6>
+                                <div class="row ">
+                                    <div class="col-sm-6">
+                                        <ul class="property-list list-unstyled mb-0">
+                                            <li><b>Depozito:</b> @Model.Deposit</li>
+
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <ul class="property-list list-unstyled mb-0">
+                                            <li>
+                                                <b>Ekipmanlar:</b>
+                                                @if (Model.ProductProperties.Barbecue == true)
+                                                {
+                                                    <span>Barbekü Malzemeleri</span>
+                                                }
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
+                    <div class="property-description">
+                        <div class="row">
+                            <div class="col-sm-3 mb-3 mb-sm-0">
+                                <h5>Açıklama</h5>
+                            </div>
+                            <div class="col-sm-9">
+                                <p>@Model.Description</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
+                    <div class="property-features">
+                        <div class="row">
+                            <div class="col-sm-3 mb-3 mb-sm-0">
+                                <h5>Özellikleri</h5>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <ul class="property-list-style-2 list-unstyled mb-0">
+                                            @if (Model.ProductProperties.Tv == true)
+                                            {
+                                                <li>Tv</li>
+                                            }
+                                            @if (Model.ProductProperties.Klima == true)
+                                            {
+                                                <li>Klima</li>
+                                            }
+                                            @if (Model.ProductProperties.Wifi == true)
+                                            {
+                                                <li>Wifi</li>
+                                            }
+                                            @if (Model.ProductProperties.Sauna == true)
+                                            {
+                                                <li>Sauna</li>
+                                            }
+                                            @if (Model.ProductProperties.Fridge == true)
+                                            {
+                                                <li>Buzdolabı</li>
+                                            }
+                                            @if (Model.ProductProperties.Washer == true)
+                                            {
+                                                <li>Çamaşır Makinesi</li>
+                                            }
+                                            @if (Model.ProductProperties.Gym == true)
+                                            {
+                                                <li>Spor Salonu</li>
+                                            }
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
+                    <div class="property-address">
+                        <div class="row">
+                            <div class="col-sm-3 mb-3 mb-sm-0">
+                                <h5>Adres</h5>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <ul class="property-list list-unstyled mb-0">
+                                            <li><b>Adres:</b> @Model.ProductAddresses.Adress</li>
+                                            <li><b>Şehir:</b> @Model.ProductAddresses.Towns.Name</li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <ul class="property-list list-unstyled mb-0">
+                                            <li><b>İlçe:</b> @Model.ProductAddresses.District.Name</li>
+                                            <li><b>Bölge:</b> @Model.ProductAddresses.Province.Name</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
+                    @*<div class="property-floor-plans">
+                            <div class="row">
+                                <div class="col-sm-3 mb-3 mb-sm-0">
+                                    <h5>Kat Planları</h5>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="accordion-style-2" id="accordion">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="accordion-title mb-0">
+                                                    <button class="btn btn-link d-flex ms-auto align-items-center" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">First Floor <i class="fas fa-chevron-down fa-xs"></i></button>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseOne" class="collapse show accordion-content" aria-labelledby="headingOne" data-bs-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate labore amet nulla a nobis iste consequuntur laudantium natus corporis, eveniet quo quidem perferendis sint illo autem, aut incidunt enim libero.</p>
+                                                    <img class="img-fluid" src="~/Content/images/property/floor-plans-01.jpg" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" id="headingTwo">
+                                                <h5 class="accordion-title mb-0">
+                                                    <button class="btn btn-link d-flex ms-auto align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                        Second Floor <i class="fas fa-chevron-down fa-xs"></i>
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseTwo" class="collapse accordion-content" aria-labelledby="headingTwo" data-bs-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit rem esse qui voluptatem tempore nobis nihil, ex, odit vel exercitationem aperiam provident consectetur. Ea, eos, blanditiis! Rem quia, doloremque numquam.</p>
+                                                    <img class="img-fluid" src="~/Content/images/property/floor-plans-01.jpg" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    @*<hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
+                        <div class="property-video">
+                            <div class="row">
+                                <div class="col-sm-3 mb-3 mb-sm-0">
+                                    <h5>Villa Videosu</h5>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe width="546" height="315" src="https://www.youtube.com/embed/kacyaEXqVhs" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    @*<hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
+                        <div class="property-walk-score">
+                            <div class="row">
+                                <div class="col-sm-3 mb-3 mb-sm-0">
+                                    <h5>Yürüyüş Skoru</h5>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="walk-score-info d-sm-flex">
+                                        <div class="mb-2 mb-sm-0">
+                                            <img src="~/Content/images/property/walk-score.png" alt="">
+                                            <p class="mb-0 d-block mt-2">walkscore96 / Walker's Paradise</p>
+                                        </div>
+                                        <a class="btn btn-primary btn-sm ms-auto" href="#">More details here</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    <hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
+                    <div class="property-nearby">
+                        <div class="row">
+                            <div class="col-sm-3 mb-3 mb-sm-0">
+                                <h5>Yakınlarda Ne Var?</h5>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="nearby-info mb-4">
+                                    <span class="nearby-title mb-2 d-block text-info">
+                                        <i class="fas fa-graduation-cap me-2"></i><b>Eğitim</b>
+                                    </span>
+                                    <div class="nearby-list">
+                                        <ul class="property-list list-unstyled mb-0">
+                                            <li class="d-flex">
+                                                <span class="me-1"><b>@Model.ProductNearPlace.Education</b> (@Model.ProductNearPlace.EducationDistance km)</span>
+
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="nearby-info mb-4">
+                                    <span class="nearby-title mb-2 d-block text-success">
+                                        <i class="fas fa-user-md me-2"></i><b>Sağlık ve Tıp</b>
+                                    </span>
+                                    <div class="nearby-list">
+                                        <ul class="property-list list-unstyled mb-0">
+                                            <li class="d-flex">
+                                                <span class="me-1"><b>@Model.ProductNearPlace.Hospital</b> (@Model.ProductNearPlace.HospitalDistance km)</span>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="nearby-info">
+                                    <span class="nearby-title mb-2 d-block text-danger">
+                                        <i class="fas fa-bus-alt me-2"></i><b>Toplu Taşıma</b>
+                                    </span>
+                                    <div class="nearby-list">
+                                        <ul class="property-list list-unstyled mb-0">
+                                            <li class="d-flex">
+                                                <span class="me-1"><b>@Model.ProductNearPlace.TransportationType</b> (@Model.ProductNearPlace.TransportationDisance km)</span>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
+                        <div class="property-schedule">
+                            <div class="row">
+                                <div class="col-sm-3 mb-3 mb-sm-0">
+                                    <h5>Schedule a tour</h5>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="row">
+                                        <div class="mb-3 col-sm-6 datetimepickers">
+                                            <div class="input-group date" id="datetimepicker-01" data-target-input="nearest">
+                                                <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#datetimepicker-01">
+                                                <div class="input-group input-group-box" data-target="#datetimepicker-01" data-toggle="datetimepicker">
+                                                    <div class="input-group-text rounded-0 rounded-end"><i class="far fa-calendar-alt"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-sm-6 datetimepickers">
+                                            <div class="input-group date" id="datetimepicker-03" data-target-input="nearest">
+                                                <input type="text" class="form-control datetimepicker-input" placeholder="Time" data-target="#datetimepicker-03" />
+                                                <div class="input-group input-group-box" data-target="#datetimepicker-03" data-toggle="datetimepicker">
+                                                    <div class="input-group-text rounded-0 rounded-end"><i class="far fa-clock"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-sm-12">
+                                            <input type="text" class="form-control" placeholder="Name">
+                                        </div>
+                                        <div class="mb-3 col-sm-12">
+                                            <input type="email" class="form-control" placeholder="Email">
+                                        </div>
+                                        <div class="mb-3 col-sm-12">
+                                            <input type="Text" class="form-control" placeholder="Phone">
+                                        </div>
+                                        <div class="mb-3 col-sm-12">
+                                            <textarea class="form-control" rows="4" placeholder="Message"></textarea>
+                                        </div>
+                                        <div class="mb-3 col-sm-12">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                        <div class="col-sm-6"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    @*<hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
+                        <div class="property-statistics">
+                            <div class="row">
+                                <div class="col-sm-3 mb-3 mb-sm-0">
+                                    <h5>Page views statistics</h5>
+                                </div>
+                                <div class="col-sm-9">
+                                    <img class="img-fluid" src="~/Content/images/property/views--statistics.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>*@
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+
+<script>
+    function favori(ProductId) {
+        $.ajax({
+            url: '/Account/AccountFavourite',
+            method: 'GET',
+            data: { ProductId },
+            success: function (data) {
+                alert("Başarılı")
+            },
+            error: function (data) {
+                alert("Başarısız")
+            }
+        })
+    }
+</script>
+
+
+

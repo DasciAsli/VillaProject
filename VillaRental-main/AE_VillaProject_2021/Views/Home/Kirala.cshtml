@@ -1,0 +1,119 @@
+﻿@model AE_VillaProject_2021.Models.EntityFramework.Sales
+@{
+    ViewBag.Title = "Kirala";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Areas/ManagementPanel/Content/assets/vendor/fullcalendar/lib/main.css" rel="stylesheet" />
+<style>
+
+    #calendar {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+</style>
+
+@section _Breadcrumb
+{
+    @Html.Partial("_Breadcrumb")
+}
+<div class="container my-3 border border-2 p-5">
+    <div class="row">
+        <div class="col-md-8 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div id='calendar' class="w-100"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 p-5 shadow">
+            @using (Html.BeginForm("Kirala", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <h6>Kullanıcı Adı</h6>
+                        <p class="form-control">@Session["Name"]</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <h6>Villa Adı</h6>
+                        @Html.DropDownList("ProductId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <h6>Giriş Tarihi</h6>
+                        @Html.EditorFor(model => model.EntryDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EntryDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <h6>Çıkış Tarihi</h6>
+                        @Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ReleaseDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @if (ViewBag.Durum != null)
+                {
+                <div class="alert alert-danger mt-2" role="alert">
+                    @ViewBag.Durum
+                </div>
+
+                }
+
+                <div class="form-group mt-3">
+                    <div class="col-md-offset-2 col-md-12">
+                        <input type="submit" value="Kirala" class="btn btn-outline-dark" />
+                    </div>
+                </div>
+            </div>
+             
+            }
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<script src="~/Areas/ManagementPanel/Content/assets/libs/js/main-js.js"></script>
+<script src="~/Areas/ManagementPanel/Content/assets/vendor/fullcalendar/lib/main.js"></script>
+<script src="~/Areas/ManagementPanel/Content/assets/vendor/fullcalendar/lib/locales-all.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: {
+                left: 'prevYear,prev,next,nextYear today',
+                center: 'title',
+                right: 'dayGridMonth,dayGridWeek,dayGridDay'
+            },
+            initialDate: '2021-12-21',
+            locale: 'tr',
+
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            dayMaxEvents: true, // allow "more" link when too many events
+            events: "/Home/GetCalendarEvents/",
+
+        });
+
+        calendar.render();
+    });
+
+
+</script>

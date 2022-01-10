@@ -1,0 +1,91 @@
+﻿@model AE_VillaProject_2021.Models.EntityFramework.Contacts
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>İletişim Detay Sayfası</h2>
+
+<div>
+    <h4>İletişim</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <p>Adres</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+
+        <dt>
+            <p>Mail</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            <p>Telefon</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            <p>Instagram</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstagramUrl)
+        </dd>
+
+        <dt>
+            <p>Twitter</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TwitterUrl)
+        </dd>
+
+        <dt>
+            <p>Youtube</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YoutubeUrl)
+        </dd>
+
+        <dt>
+            <p>Facebook</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FacebookUrl)
+        </dd>
+
+        <dt>
+            <p>Durum</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            <p>Kayıt Tarihi</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Contactıd },new { @class="btn btn-outline-dark" }) |
+    @Html.ActionLink("Anasayafa'ya Dön", "Index",null,new { @class="btn btn-outline-dark" })
+</p>

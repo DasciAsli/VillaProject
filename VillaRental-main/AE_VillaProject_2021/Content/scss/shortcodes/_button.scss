@@ -1,0 +1,265 @@
+.btn {
+	transition: all 0.3s ease-in-out;
+}
+
+button {
+	outline: medium none !important;
+	color: $primary;
+}
+
+// btn
+.btn {
+	font-size: 14px;
+	font-weight: 500;
+	padding: 12px 30px;
+	border-radius: $border-radius;
+
+	&:not(:disabled) {
+		&:not(.disabled).active {
+			&:focus {
+				box-shadow: none;
+				outline: none;
+			}
+
+		}
+
+		&:not(.disabled) {
+			&:active {
+				&:focus {
+					box-shadow: none;
+					outline: none;
+					color: $white;
+				}
+
+			}
+
+		}
+
+	}
+
+	&:hover {
+		box-shadow: none;
+		outline: none;
+	}
+
+	&:focus {
+		box-shadow: none;
+		outline: none;
+		color: $white;
+	}
+
+	&:active {
+		box-shadow: none;
+		outline: none;
+		color: $white;
+	}
+
+}
+
+.show {
+	>.btn.dropdown-toggle {
+		&:focus {
+			box-shadow: none;
+			outline: none;
+			color: $white;
+		}
+
+	}
+
+	>.btn-primary.dropdown-toggle {
+		background: $primary;
+		border-color: $primary;
+	}
+
+}
+
+.btn-primary {
+	background: $primary;
+	border-color: $primary;
+
+	&:hover {
+		background: darken($primary, 6%);
+		border-color: darken($primary, 6%);
+
+		&:not(:disabled) {
+			&:not(.disabled).active {
+				background: $primary;
+				border-color: $primary;
+			}
+
+			&:not(.disabled) {
+				&:active {
+					background: $primary;
+					border-color: $primary;
+				}
+
+			}
+
+		}
+
+	}
+	&:focus {
+		background: darken($primary, 6%);
+		border-color: darken($primary, 6%);
+	}
+&:focus {
+		background: darken($primary, 6%);
+		border-color: darken($primary, 6%);
+	}
+
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus {
+	background: $primary;
+	border-color: $primary;
+}
+
+.btn-dark {
+	background: $gray-9;
+	border-color: $gray-9;
+
+	&:hover {
+		background: lighten($gray-9, 5%);
+		border-color: lighten($gray-9, 5%);
+	}
+
+}
+
+.btn {
+	&:not(:disabled) {
+		&:not(.disabled).active {
+			&:focus {
+				color: $white;
+			}
+
+		}
+
+	}
+
+	i {
+		padding-right: 10px;
+	}
+
+	+ {
+		.btn {
+			margin-left: 3px;
+		}
+
+	}
+
+}
+
+.btn-link {
+	color: $primary;
+	text-decoration: none;
+
+	&:hover {
+		color: $gray-9;
+		text-decoration: none;
+		outline: none;
+	}
+
+	&:focus {
+		color: $gray-9;
+		text-decoration: none;
+		outline: none;
+	}
+
+}
+
+.btn.btn-link:not(:disabled):not(.disabled):active:focus {
+	color: $gray-9;
+}
+
+.btn-white {
+	background: $white;
+	border-color: $white;
+	color: $gray-9;
+
+	&:hover {
+		background: $gray-2;
+		border-color: $gray-2;
+		color: $gray-9;
+	}
+
+	&:active {
+		color: $gray-9;
+	}
+
+	&:focus {
+		color: $gray-9;
+	}
+
+}
+
+.btn.btn-white:not(:disabled):not(.disabled):active:focus {
+	color: $gray-9;
+}
+
+.btn-light {
+	&:active {
+		color: $gray-9;
+	}
+
+	&:focus {
+		color: $gray-9;
+	}
+
+}
+
+.btn.btn-light:not(:disabled):not(.disabled):active:focus {
+	color: $gray-9;
+}
+
+.btn.btn-sm {
+	padding: 6px 24px;
+}
+
+.btn.btn-md {
+	padding: 9px 26px;
+}
+
+.btn.btn-lg {
+	padding: 13px 30px;
+}
+
+.btn.btn-xl {
+	padding: 16px 40px;
+}
+
+.btn-app {
+	display: flex;
+
+	i {
+		font-size: 40px;
+	}
+	.small-text{
+     font-size: 11px;
+     font-weight: normal;
+	}
+
+}
+
+.btn-outline-secondary {
+	border: 2px solid $border-color;
+	color: $gray-8;
+
+	&:hover {
+		background: $gray-8;
+		color: $white;
+		border-color: $gray-8;
+	}
+
+	&:focus {
+		background: $gray-8;
+		color: $white;
+		border-color: $gray-8;
+	}
+
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled):active {
+	background: $gray-8;
+	color: $white;
+	border-color: $gray-8;
+}

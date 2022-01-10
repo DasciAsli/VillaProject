@@ -1,0 +1,169 @@
+.feature-info {
+	background: $white;
+	border: 1px solid $border-color;
+	padding: 36px;
+	margin-right: -1px;
+	height: 100%;
+	position: relative;
+	transition: all 0.5s ease-in-out;
+	z-index: 1;
+
+	.feature-info-icon {
+		font-size: 40px;
+		margin-bottom: 20px;
+		color: $primary;
+		transition: all 0.3s ease-in-out;
+	}
+
+	.feature-info-content {
+		transition: all 0.3s ease-in-out;
+     .feature-info-title{
+      	transition: all 0.3s ease-in-out;
+     }
+	}
+
+	&:hover {
+		background: $primary;
+
+		.feature-info-icon {
+			color: $white;
+		}
+
+		.feature-info-content {
+			color: $white;
+
+			.feature-info-title {
+				color: $white;
+			}
+
+		}
+
+	}
+
+}
+
+// feature-info-02
+.feature-info-02 {
+	padding: 0px;
+	text-align: center;
+	height: 100%;
+
+	.feature-info-detail {
+		position: relative;
+		z-index: 9;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+
+		.feature-info-icon {
+			background: $gray-1;
+			padding: 20px;
+			margin: 5px;
+		}
+
+		.feature-info-content {
+			padding: 20px;
+		}
+
+		.feature-info-button {
+			margin-top: auto;
+
+			.btn {
+				border-radius: 0;
+			}
+
+		}
+
+	}
+
+	.feature-info-bg {
+		bottom: 0;
+		left: 0;
+		opacity: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 0;
+		transition: all 0.3s ease-out 0s;
+		z-index: 0;
+		background-size: cover;
+		background-position: center center;
+	}
+
+	&:hover {
+		background: transparent;
+
+		.feature-info-icon {
+			color: $white;
+			background: transparent;
+		}
+
+		.feature-info-bg {
+			opacity: 1;
+		}
+
+		.feature-info-button {
+			.btn {
+				background: $primary;
+				border-color: $primary;
+				color: $white;
+			}
+
+		}
+
+	}
+
+}
+
+.feature-info-round-icon {
+	border: none;
+
+	.feature-info-icon {
+		font-size: 50px;
+		width: 130px;
+		height: 130px;
+		line-height: 130px;
+		text-align: center;
+		display: inline-block;
+		background: $primary;
+		color: $white;
+		border-radius: 50%;
+	}
+
+	&:hover {
+		.feature-info-icon {
+			background: $white;
+			color: $primary;
+		}
+
+	}
+
+}
+
+.feature-info-no-hover {
+	&:hover {
+		background: $white;
+
+		.feature-info-icon {
+			color: $gray-8;
+		}
+
+		.feature-info-content {
+			color: $gray-3;
+
+			.feature-info-title {
+				color: $gray-8;
+			}
+
+		}
+
+	}
+
+}
+
+.feature-info-03 {
+	.feature-info-image {
+		padding: 100px 0;
+	}
+
+}

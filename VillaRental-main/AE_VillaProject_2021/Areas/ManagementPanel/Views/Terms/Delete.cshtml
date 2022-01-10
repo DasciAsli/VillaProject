@@ -1,0 +1,57 @@
+﻿@model AE_VillaProject_2021.Models.EntityFramework.Terms
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Şart Silme Sayfası</h2>
+
+<h3>Silmek istediğinize emin misiniz?</h3>
+<div>
+    <h4>Şartlar</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <p>Başlık</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            <p>Açıklama</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            <p>Durum</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            <p>Kayıt Tarihi</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-outline-dark" /> |
+            @Html.ActionLink("Anasayfa'ya Dön", "Index",null,new { @class="btn btn-outline-dark" })
+        </div>
+    }
+</div>

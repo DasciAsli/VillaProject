@@ -1,0 +1,84 @@
+﻿@model AE_VillaProject_2021.Models.EntityFramework.Sales
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Areas/ManagementPanel/Content/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="~/Areas/ManagementPanel/Content/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Areas/ManagementPanel/Content/assets/libs/css/style.css">
+    <link rel="stylesheet" href="~/Areas/ManagementPanel/Content/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <title>Fatura</title>
+</head>
+
+<body>
+    <div class="content mt-4">
+        <div class="row mx-auto">
+            <div class="offset-xl-2 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
+                <div class="card ">
+                    <div class="card-header p-4">
+                        <a class="pt-2 d-inline-block" href="#">Fatura</a>
+
+                        <div class="float-right">
+                            <h3 class="mb-0">İşlem Tarih</h3>
+                            @Model.RegisterDate
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-sm-6">
+                                <h5 class="mb-3">Alıcı Bilgileri:</h5>
+                                <h3 class="text-dark mb-1">@Model.Users.Name @Model.Users.SurName</h3>
+                                <div>@Model.Users.UserDetails.Address</div>
+                                <div>Email: @Model.Users.Email</div>
+                                <div>Telefon: @Model.Users.UserDetails.PhoneNumber</div>
+                            </div>
+                        </div>
+                        <div class="table-responsive-sm">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="center">#</th>
+                                        <th>Villa Adı</th>
+                                        <th>Giriş Tarihi</th>
+                                        <th>Çıkış Tarihi</th>
+                                        <th class="right">Toplam Fiyat</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="center">1</td>
+                                        <td class="left strong">@Model.Products.Title</td>
+                                        <td class="left">@Model.EntryDate</td>
+                                        <td class="right">@Model.ReleaseDate</td>
+                                        <td class="right">$@Model.TotalPrice</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <p class="mb-0">Villa Rental</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jquery 3.3.1 -->
+    <script src="~/Areas/ManagementPanel/Content/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <!-- bootstap bundle js -->
+    <script src="~/Areas/ManagementPanel/Content/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- slimscroll js -->
+    <script src="~/Areas/ManagementPanel/Content/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <!-- main js -->
+    <script src="~/Areas/ManagementPanel/Content/assets/libs/js/main-js.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+﻿@model AE_VillaProject_2021.Models.EntityFramework.Users
+
+<div class="col-12 mb-5">
+    <div class="profile-sidebar bg-holder bg-overlay-black-70" style="background-image: url(/Content/images/banner-01.jpg);">
+        <div class="d-sm-flex align-items-center position-relative">
+            @if (Model.UserDetails.ImageUrl != null)
+            {
+                <div class="profile-avatar">
+                    <img class="img-fluid  rounded-circle" src="@Model.UserDetails.ImageUrl" alt="">
+                </div>
+            }
+            else
+            {
+                <div class="profile-avatar">
+                    <img class="img-fluid  rounded-circle" src="~/Content/images/default-user-image.png" alt="">
+                </div>
+                
+            }
+
+            <div class="ms-sm-4">
+                <h4 class="text-white">@Model.Name @Model.SurName</h4>
+                <b class="text-white">@Model.Email</b>
+            </div>
+
+        </div>
+        <div class="profile-nav ">
+            <ul class="nav ">
+                <li class="nav-item">
+                    <a class="nav-link @(ViewBag.Title=="AccountProfile"? "active" : "")" href="/Account/AccountProfile/"><i class="far fa-user"></i> Profili Güncelle</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewBag.Title=="AccountSavedHomes"? "active" : "")" href="/Account/AccountSavedHomes/"><i class="fas fa-home"></i>Kaydedilen Villalar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewBag.Title=="AccountSavedRental"? "active" : "")" href="/Account/AccountSavedRental/"><i class="fas fa-truck-moving"></i>Kiralanan Villalar</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@model AE_VillaProject_2021.Models.EntityFramework.Towns
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Şehir Silme Sayfası</h2>
+<div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Herhangi bir şehri sildiğiniz takdirde o şehirdeki tüm villalar,tüm ilçeler ve tüm mahalleler silinecektir!</strong>
+</div>
+
+<h3>Bu şehri listeden çıkarmak istediğinize emin misiniz?</h3>
+
+<div>
+    <h4>Şehir</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <p>Ad</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            <p>Kayıt Tarihi</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+
+        <dt>
+            <p>Durum</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-outline-dark" /> |
+            @Html.ActionLink("Anasayfa'ya Dön", "Index",null,new { @class="btn btn-outline-dark" })
+        </div>
+    }
+</div>

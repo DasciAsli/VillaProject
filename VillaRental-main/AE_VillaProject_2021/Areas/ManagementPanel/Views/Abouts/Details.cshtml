@@ -1,0 +1,59 @@
+﻿@model AE_VillaProject_2021.Models.EntityFramework.Abouts
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Hakkımızda Detay Sayfası</h2>
+
+<div>
+    <h4>Hakkımızda</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <p>Başlık</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            <p>Alt Başlık</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubTitle)
+        </dd>
+
+        <dt>
+            <p>Açıklama</p>
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Description)
+        </dd>
+
+        <dt>
+            <p>Durum</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            <p>Kayıt Tarihi</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.AboutId },new { @class="btn btn-outline-dark" }) |
+    @Html.ActionLink("Anasayafa'ya Dön", "Index",null,new { @class="btn btn-outline-dark" })
+</p>

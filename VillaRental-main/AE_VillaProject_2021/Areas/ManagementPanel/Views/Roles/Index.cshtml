@@ -1,0 +1,72 @@
+﻿@model IEnumerable<AE_VillaProject_2021.Models.EntityFramework.Roles>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Roller Sayfası</h2>
+
+<p>
+    @Html.ActionLink("Yeni Rol Oluştur", "Create", null, new { @class = "btn btn-outline-dark" })
+</p>
+
+<div class="row">
+
+    <!-- ============================================================== -->
+    <!-- contextual table -->
+    <!-- ============================================================== -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Roller Sayfası</h5>
+            <div class="card-body">
+                <div class="table-responsive ">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-primary">
+                                <th>
+                                    <p>Rol Adı</p>
+                                </th>
+                                <th>
+                                    <p>Durum</p>
+                                </th>
+                                <th>
+                                    <p>Kayıt Tarihi</p>
+                                </th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RoleName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IsActive)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RegisterDate)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Düzenle", "Edit", new { id = item.RoleId }, new { @class = "btn btn-outline-dark" }) |
+                                        @Html.ActionLink("Detay", "Details", new { id = item.RoleId }, new { @class = "btn btn-outline-dark" }) |
+                                        @Html.ActionLink("Sil", "Delete", new { id = item.RoleId }, new { @class = "btn btn-outline-dark" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

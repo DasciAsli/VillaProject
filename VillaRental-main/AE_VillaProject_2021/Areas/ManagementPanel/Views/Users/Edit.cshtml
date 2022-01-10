@@ -1,0 +1,140 @@
+﻿@model AE_VillaProject_2021.Models.EntityFramework.Users
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Kullanıcı Düzenleme Sayfası</h2>
+
+@using (Html.BeginForm("Edit","Users",FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Kullanıcı</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.UserId)
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4>Ad</h4>
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4>Soyad</h4>
+                @Html.EditorFor(model => model.SurName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SurName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4>Mail</h4>
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4>Şifre</h4>
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4>Durum</h4>
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsActive)
+                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4>Rol</h4>
+                @Html.DropDownList("RoleId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                @Html.Label("Erkek")
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.UserDetails.Gender)
+                    @Html.ValidationMessageFor(model => model.UserDetails.Gender, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4>Yaş</h4>
+                @Html.EditorFor(model => model.UserDetails.Age, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserDetails.Age, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4>Telefon</h4>
+                @Html.EditorFor(model => model.UserDetails.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserDetails.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4>Resim</h4>
+                <img src="@Model.UserDetails.ImageUrl" alt="Alternate Text" />
+                <input type="file" name="imgFile" value="" />
+
+                @Html.ValidationMessageFor(model => model.UserDetails.ImageUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4>Adres</h4>
+                @Html.TextAreaFor(model => model.UserDetails.Address, 3, 116, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UserDetails.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4>Tc</h4>
+                @Html.EditorFor(model => model.UserDetails.Tc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserDetails.Tc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4>Pasaport Numarası</h4>
+                @Html.EditorFor(model => model.UserDetails.PassportNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserDetails.PassportNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Kaydet" class="btn btn-outline-dark" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="col-md-10 mb-5">
+    @Html.ActionLink("Anasayfa'ya Dön", "Index", null, new { @class = "btn btn-outline-dark" })
+</div>

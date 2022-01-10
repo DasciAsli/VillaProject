@@ -1,0 +1,520 @@
+.header {
+  background: $white;
+  z-index: 9;
+  position: relative;
+
+  .container-fluid {
+    padding: 0 60px;
+    align-items: initial;
+  }
+
+}
+
+// topbar
+.header .topbar {
+  background: $gray-9;
+  padding: 10px 0;
+}
+
+.header .topbar {
+  a {
+    color: $white;
+
+    &:hover {
+      color: $primary;
+    }
+
+  }
+
+}
+
+.header .topbar  .dropdown {
+  margin-right: 20px;
+
+  .dropdown-toggle {
+    padding: 12px 0;
+
+    i {
+      font-size: 10px;
+    }
+
+  }
+
+  .dropdown-menu {
+    a {
+      color: $gray-8;
+
+      &:hover {
+        color: $primary;
+      }
+
+    }
+
+  }
+
+}
+
+.header .topbar .social {
+  margin-right: 20px;
+  display: inline-block;
+
+  ul {
+    margin: 0;
+
+    li {
+      display: inline-block;
+      padding: 0 4px;
+
+      a {
+        color: $white;
+
+        &:hover {
+          color: $primary;
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+.header .topbar .login {
+  display: inline-block;
+
+  a {
+    color: $white;
+
+    &:hover {
+      color: $primary;
+    }
+
+  }
+
+}
+
+// topbar dropdown-menu
+.topbar .dropdown .dropdown-menu {
+  border-radius: 0;
+  border: none;
+  box-shadow: 0px 5px 10px rgba($black, 0.1);
+
+  padding: 10px;
+}
+
+.topbar .dropdown .dropdown-menu a {
+  font-size: 14px;
+  padding: 10px 20px;
+  font-weight: 500;
+  border-radius: 3px;
+}
+
+.topbar .dropdown .dropdown-menu a:hover {
+  background: rgba($primary, 0.1);
+  color: $primary;
+}
+
+// navbar
+
+.navbar {
+  padding: 0;
+}
+
+.navbar .navbar-nav .nav-link {
+  font-weight: 500;
+  font-size: 16px;
+  padding: 10px 20px;
+  color: $gray-8;
+  text-transform: capitalize;
+
+  i {
+    font-weight: bold;
+  }
+
+  &:hover {
+    color: $primary;
+  }
+
+}
+
+.dropdown-menu {
+  z-index: 9999;
+}
+
+.navbar-collapse {
+  position: relative;
+}
+
+.navbar-light {
+  color: $white;
+  background-color: $gray-1;
+  border-color: $border-color;
+}
+
+.navbar-light .navbar-nav > li > a {
+  color: $white;
+}
+
+.navbar-light .navbar-nav > .dropdown > a .caret {
+  border-top-color: $white;
+  border-bottom-color: $white;
+}
+
+.navbar-brand {
+  padding: 20px 0px;
+  margin-right: 0;
+}
+
+.navbar-brand img {
+  height: 40px;
+}
+
+.navbar .navbar-brand {
+  color: $white;
+  flex: 0 0 180px;
+}
+
+.header .navbar-nav > li {
+  display: flex;
+}
+
+.header .navbar-nav li > a {
+  align-items: center;
+  display: flex;
+  padding: 3px 0px;
+  color: $gray-8;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+.header .navbar-nav li > a:hover {
+  color: $primary;
+}
+
+.header .navbar-nav li > a i {
+  margin-left: 5px;
+  font-size: 10px;
+}
+
+.header .add-listing {
+  align-self: center;
+  flex: 0 0 160px;
+  text-align: right;
+}
+
+.megamenu {
+  padding: 20px 20px;
+  width: 100%;
+}
+
+.megamenu > div > li > ul {
+  padding: 0;
+  margin: 0;
+}
+
+.megamenu > div > li > ul > li {
+  list-style: none;
+}
+
+.megamenu .card {
+  outline: none;
+}
+
+.megamenu .card:hover,
+.megamenu .card:focus {
+  outline: 1px solid $black;
+}
+
+.megamenu > div > li > ul > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.428571429;
+  color: $gray-9;
+  white-space: normal;
+}
+
+.megamenu > div > li > ul > li > a:hover,
+.megamenu > div > li > ul > li > a:focus {
+  text-decoration: none;
+  color: $gray-9;
+  background-color: $gray-1;
+}
+
+.megamenu.disabled > a,
+.megamenu.disabled > a:hover,
+.megamenu.disabled > a:focus {
+  color: $gray-1;
+}
+
+.megamenu.disabled > a:hover,
+.megamenu.disabled > a:focus {
+  text-decoration: none;
+  background-color: transparent;
+  background-image: none;
+  cursor: not-allowed;
+}
+
+.megamenu.dropdown-header {
+  color: $primary;
+  font-size: 18px;
+}
+
+.header li > .dropdown-item:focus,
+.header li > .dropdown-item:hover {
+  color: $primary;
+  background: none;
+}
+
+.header .dropdown-item.active,
+.header .dropdown-item:active,
+.header .dropdown-item:focus,
+.header .dropdown-item:hover {
+  background: none;
+}
+
+.header .dropdown-toggle::after {
+  content: none;
+}
+
+.header .navbar-collapse {
+  align-items: inherit;
+}
+
+.header .megamenu .dropdown-item {
+  padding: 0px;
+}
+
+.header .navbar .dropdown-menu a.dropdown-item {
+  min-width: 180px;
+}
+
+.header .navbar .dropdown-menu {
+  padding: 15px;
+}
+
+.header .navbar .dropdown-menu li a i {
+  margin-left: auto;
+}
+
+.navbar .dropdown > .dropdown-menu li > a {
+  font-size: 14px;
+  padding: 10px 20px 10px 0;
+  border-radius: 3px;
+  position: relative;
+}
+
+.navbar .dropdown > .dropdown-menu li > a:hover {
+  background: rgba($primary, 0.1);
+  color: $primary;
+  padding-left: 15px;
+}
+
+// header-transparent
+
+.header-transparent {
+  position: absolute;
+  background: transparent;
+  width: 100%;
+  z-index: 999;
+
+  .navbar-brand {
+    margin-right: 40px;
+  }
+
+}
+
+.header-transparent .navbar .navbar-nav .nav-link {
+  color: $white;
+
+  &:hover {
+    color: $primary;
+  }
+
+}
+
+.navbar .navbar-nav .nav-item.active .nav-link {
+  color: $primary;
+}
+
+.navbar .navbar-nav .dropdown-menu li.active > a {
+  background: rgba($primary, 0.1);
+  color: $primary;
+  padding-left: 15px;
+}
+
+.header-transparent .add-listing {
+  align-self: inherit;
+  flex: inherit;
+  text-align: right;
+}
+
+.header-transparent .login a {
+  color: $white;
+
+  &:hover {
+    color: $primary;
+  }
+
+}
+
+// sticky header
+.header .is-sticky {
+  position: fixed !important;
+  width: 100%;
+  background: $white;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  top: 0;
+  z-index: 9;
+
+  .header-contact-info {
+    display: none !important;
+  }
+
+  .navbar {
+    position: relative;
+    top: 0px;
+    right: 0px;
+    left: 0;
+    border-top: none !important;
+    width: 100%;
+  }
+
+}
+
+// sticky header
+.header-transparent .is-sticky {
+  position: fixed !important;
+  width: 100%;
+  background: $gray-9;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  top: 0;
+  z-index: 9;
+
+  .header-contact-info {
+    display: none !important;
+  }
+
+  .navbar {
+    position: relative;
+    top: 0px;
+    right: 0px;
+    left: 0;
+    border-top: none !important;
+    width: 100%;
+  }
+
+}
+
+.navbar-toggler:focus{
+  box-shadow: none;
+}
+
+@media (min-width:992px) {
+  .header .navbar .dropdown-menu {
+    margin: 0px;
+    font-size: 14px;
+    border-radius: 0px;
+    border: none;
+    left: 100%;
+
+    transform: translate3d(-50%, 10px, 0);
+    transition: all 0.3s ease-in-out;
+    transition-property: opacity, visibility, transform;
+    transform-origin: top center;
+    box-shadow: 0px 5px 10px rgba($black, 0.1);
+    visibility: hidden;
+    opacity: 0;
+    display: block !important;
+  }
+
+    .header .navbar .dropdown > .dropdown-menu {
+      top: 100%;
+    }
+
+  .header .navbar .dropdown-menu.megamenu {
+    left: 50%;
+  }
+
+  .navbar-nav .dropdown-menu.dropdown-menu-lg {
+    min-width: 570px;
+  }
+
+  .navbar-nav .mega-menu {
+    position: static;
+  }
+
+  .header .navbar .dropdown:hover > .dropdown-menu {
+    transform: translate3d(-50%, 0, 0);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .header .navbar .dropdown-menu .dropdown-submenu .dropdown-menu {
+    left: 100%;
+    right: auto;
+    transform: translate3d(15px, 10px, 0);
+  }
+
+  .header .navbar .dropdown-menu .dropdown-submenu .dropdown-menu.left-side {
+    right: 100%;
+    left: auto;
+    transform: translate3d(-15px, 10px, 0);
+  }
+
+  .navbar-nav li:hover > ul.dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .dropdown-submenu {
+    position: relative;
+  }
+
+  .dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+  }
+
+  .dropdown-menu > li > a:hover:after {
+    text-decoration: underline;
+    transform: rotate(-90deg);
+  }
+
+}
+
+.place-card-large {
+  display: none !important;
+}
+
+.form-check-input{
+  border: 2px solid $gray-2;
+  height: 16px;
+  width: 16px;
+  margin-top: 3px;;
+}
+.form-check-input:checked{
+  background: $primary;
+  border-color: $primary;
+}
+.form-check-input:focus {
+  box-shadow: none;
+  border-color: inherit;
+}
+
+
+// responsive
+
+@media (max-width:991px) {
+  // sticky header
+.header .is-sticky {
+   .navbar {
+    top: 0;
+    right: 0;
+  }
+}
+
+}

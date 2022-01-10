@@ -1,0 +1,117 @@
+﻿@model IEnumerable<AE_VillaProject_2021.Models.EntityFramework.Users>
+
+@{ ViewBag.Title = "Index";
+                Layout = "~/Areas/ManagementPanel/Views/Shared/_AdminLayout.cshtml"; }
+
+
+
+<h2>Kullanıcılar Sayfası</h2>
+<p>
+    @Html.ActionLink("Yeni Kullanıcı Oluştur", "Create", null, new { @class = "btn btn-primary mt-3" })
+</p>
+<div class="influence-finder">
+    <div class="container-fluid dashboard-content">
+
+
+        <!-- Content -->
+        <div class="row">
+
+            <!-- Search bar  -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        @using (Html.BeginForm("Search","Users",FormMethod.Post))
+                        {
+                            <input class="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search" name="p">
+                            <button class="btn btn-primary search-btn" type="submit">Ara</button>                           
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                <div class="row ">
+                    <!-- Card user -->
+                    @foreach (var item in Model)
+                    {
+        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 ">
+            <div class="card mx-auto">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="user-avatar float-xl-left pr-4 float-none">
+                                @if (@item.UserDetails.ImageUrl == null)
+                                {
+                <img src="https://kstu.edu.tr/kstu-file/uploads/default-user-image.png" alt="User Avatar" class="rounded-circle user-avatar-xl"> }
+                                else
+                                {
+                <img src="@item.UserDetails.ImageUrl" alt="User Avatar" class="rounded-circle user-avatar-xl">}
+
+                            </div>
+
+                            <div class="pl-xl-3">
+                                <div class="m-b-0">
+                                    <div class="user-avatar-name d-inline-block">
+                                        <h2 class="font-24 m-b-10">@item.Name @item.SurName</h2>
+                                    </div>
+
+                                </div>
+
+                                <div class="user-avatar-address">
+                                    <p class="mb-2">
+                                        @if (@item.UserDetails.Address != null)
+                                        {
+                                            if (@item.UserDetails.Address.Length > 20)
+                                            {
+                        <i class="fa fa-map-marker-alt mr-2  text-primary"></i>@item.UserDetails.Address.Substring(0, 20) }
+                                            else
+                                            {
+                        <i class="fa fa-map-marker-alt mr-2  text-primary"></i>@item.UserDetails.Address}
+                                        }
+                                        @if (@item.UserDetails.Gender != null)
+                                        {
+                                            if (@item.UserDetails.Gender == true)
+                                            {
+                        <i class="fa fa-male mr-2  text-primary m-l-10"></i><span>Erkek </span> }
+                                            else
+                                            {
+                        <i class="fa fa-female mr-2  text-primary m-l-10"></i><span>Kadın </span>}
+                                        }
+                                        @if (@item.UserDetails.Age != null)
+                                        {
+                        <span class="m-l-10">@item.UserDetails.Age</span> } @*<span class="m-l-10">@item.Email</span>
+                            @if (@item.IsActive == true)
+                            {
+                                <span class="m-l-10">AKTİF </span>
+                            }
+                            else
+                            {
+                                <span class="m-l-10">PASİF </span>
+                            }
+                            <span class="m-l-10">@item.RegisterDate </span>*@
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="border-top user-social-box">
+                    <div class="d-xl-inline-block ml-3 p-3 ">
+                        @Html.ActionLink("Düzenle", "Edit", new { id = item.UserId }, new { @class = "btn btn-outline-primary" }) |
+                        @Html.ActionLink("Detay", "Details", new { id = item.UserId }, new { @class = "btn btn-outline-primary" }) |
+                        @Html.ActionLink("Sil", "Delete", new { id = item.UserId }, new { @class = "btn btn-outline-primary" })
+                    </div>
+
+                </div>
+            </div>
+        </div>}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

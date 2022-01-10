@@ -1,0 +1,572 @@
+// section title
+.section-title {
+	margin-bottom: 40px;
+}
+
+// browse-properties
+.category {
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+
+		.category-item {
+			margin-top: -1px;
+			margin-right: -1px;
+			flex: 0 0 33.333333%;
+			max-width: 33.333333%;
+			transition: all 0.3s ease-in-out;
+
+			a {
+				display: flex;
+				align-items: center;
+				border: 1px solid $border-color;
+				padding: 24px;
+				height: 100%;
+
+				.category-icon {
+					margin-right: 14px;
+
+				}
+
+				i {
+					font-size: 50px;
+					line-height: 60px;
+					color: $gray-3;
+				 transition: all 0.3s ease-in-out;
+				}
+				h6 {
+						transition: all 0.3s ease-in-out;
+					}
+
+				span {
+					margin-left: auto;
+					color: $gray-3;
+					flex: 0 0 56px;
+					padding-left: 10px;
+					transition: all 0.3s ease-in-out;
+				}
+
+				&:hover {
+					background: $primary;
+					border-color: $primary;
+
+					i {
+						color: $white;
+					}
+
+					span {
+						color: $white;
+					}
+
+					h6 {
+						color: $white;
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+// agent
+.agent {
+	border: 1px solid $border-color;
+	margin-right: -1px;
+	// height: 100%;
+
+	.agent-detail {
+		padding: 30px;
+	}
+
+	.agent-avatar {
+		margin-bottom: 20px;
+	}
+
+	.agent-button {
+		margin-top: auto;
+
+		.btn {
+			border-radius: 0;
+			border-top: 1px solid $border-color;
+		}
+
+	}
+
+	.agent-button {
+		.btn {
+			&:hover {
+				border-color: $primary;
+			}
+
+		}
+
+	}
+
+	&:hover {
+		.agent-button {
+			.btn {
+				background: $primary;
+				color: $white;
+				border-color: $primary;
+			}
+
+		}
+
+	}
+
+}
+
+// agent
+.agent.agent-02 {
+	.agent-detail {
+		display: flex;
+
+		.agent-avatar {
+			margin-right: 30px;
+			margin-bottom: 0px;
+			flex: 0 0 120px;
+		}
+
+		.agent-button {
+			.btn {
+				border-radius: 0;
+				border-top: 1px solid $border-color;
+			}
+
+		}
+
+	}
+
+	&:hover {
+		.agent-button {
+			.btn {
+				background: $primary;
+				color: $white;
+			}
+
+		}
+
+	}
+
+}
+
+.agent.agent-03 {
+	.agent-avatar {
+		text-align: center;
+		margin-bottom: 0;
+
+		img {
+			height: auto;
+		}
+
+	}
+
+	.agent-listing {
+		border-top: 1px solid $border-color;
+
+		a {
+			padding: 13px 20px;
+			color: $gray-3;
+			display: inline-block;
+
+			&:hover {
+				color: $primary;
+			}
+
+		}
+
+	}
+
+	.agent-info {
+		ul {
+			width: 49%;
+			display: inline-block;
+			padding-right: 1%;
+			vertical-align: top;
+		}
+
+		strong {
+			color: $gray-8;
+		}
+
+	}
+
+	.agent-button {
+		margin-top: auto;
+
+		.btn {
+			border-top: 0;
+		}
+
+	}
+
+}
+
+// places
+.location-item {
+	min-height: 220px;
+	position: relative;
+	transition: all 0.5s ease-in-out;
+
+	.location-item-info {
+		position: absolute;
+		left: 20px;
+		bottom: 20px;
+
+		.location-item-title {
+			color: $white;
+			transition: all 0.3s ease-in-out;
+
+			&:hover {
+				color: $primary;
+			}
+
+		}
+
+		.location-item-list {
+			color: $white;
+			transition: all 0.3s ease-in-out;
+
+			&:hover {
+				color: $primary;
+			}
+
+		}
+
+	}
+
+}
+
+.location-item.location-item-big {
+	min-height: auto;
+	height: 100%;
+}
+
+// location 02
+.location-item-02 {
+	text-align: center;
+
+	.location-item-info {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 50%;
+		display: block;
+		transform: translateY(-50%);
+		bottom: inherit;
+	}
+
+}
+
+// location list
+
+.location-list {
+	padding: 30px;
+	background: $white;
+	border: 1px solid $border-color;
+
+	ul {
+		padding: 0 20px;
+
+		li {
+			padding: 8px 0;
+
+			a {
+				font-family: $font-hedding;
+				font-weight: 500;
+				display: flex;
+				color: $gray-8;
+
+				span {
+					color: $gray-3;
+				}
+
+				&:hover {
+					color: $primary;
+
+					span {
+						color: $primary;
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+// social icon
+.social-icon-02 {
+	ul {
+		li {
+			display: inline-block;
+
+			a {
+				width: 40px;
+				height: 40px;
+				line-height: 40px;
+				color: $gray-8;
+				background: $white;
+				border-radius: 50%;
+				display: inline-block;
+				text-align: center;
+
+				&:hover {
+					color: $white;
+					background: $primary;
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+// Social Bg Color
+.social-bg-hover {
+	&:before {
+		content: "";
+		color: $white;
+		width: 100%;
+		height: 100%;
+		display: inline-block;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+
+	position: relative;
+	color: $white;
+
+	&:hover {
+		color: $white;
+
+		&:before {
+			background-color: rgba(black, 0.1);
+		}
+
+	}
+
+	span {
+		position: relative;
+	}
+
+}
+
+.facebook-bg {
+	background-color: #445c8e;
+}
+
+.twitter-bg {
+	background-color: #43afe9;
+}
+
+.google-bg {
+	background-color: #dc0510;
+}
+
+.linkedin-bg {
+	background-color: #007eb3;
+}
+
+#street-view {
+	height: 100%;
+}
+
+// Agent Info
+.sidebar .widget.agent-info {
+	padding: 0px;
+	margin-bottom: 30px;
+	border: none;
+}
+
+.widget.agent-info .widget-dec {
+	padding: 20px;
+	border: 1px solid $border-color;
+}
+
+.widget.agent-info .btn {
+	border-radius: 0px;
+}
+
+// Agent Contact And Form
+.agent-contact-inner .border {
+	border: 1px dashed rgba($white, 0.2) !important;
+}
+
+// popup-video
+
+.popup-video {
+	.popup-icon {
+		color: $primary;
+		font-size: 50px;
+		line-height: 50px;
+
+		span {
+			font-size: 16px;
+			display: inline-block;
+		}
+
+		&:hover {
+			color: $gray-8;
+		}
+
+	}
+
+}
+
+// our-clients
+.our-clients {
+	.owl-carousel {
+		img {
+			padding: 20px;
+			background: $white;
+			filter: grayscale(100%);
+			transition: all 0.3s ease-in-out;
+		}
+
+		img:hover {
+			filter: grayscale(0);
+		}
+
+	}
+
+	.owl-carousel .owl-dots {
+		margin-top: 0;
+		margin-bottom: 0px;
+	}
+
+}
+
+// modal login
+.modal.login {
+	.modal-dialog {
+		max-width: 600px;
+	}
+
+}
+
+.modal.login {
+	.modal-header {
+		padding: 20px 30px;
+		background: $gray-1;
+	}
+
+}
+
+.modal.login {
+	.modal-body {
+		padding: 30px;
+	}
+
+}
+
+.modal.login {
+	.nav-tabs.nav-tabs-02 {
+		.nav-item {
+			margin: 2px;
+		}
+
+	}
+
+}
+
+// mortgage
+.mortgage {
+	.search {
+		input {
+			padding-right: 180px;
+		}
+
+	}
+
+}
+
+// compare-properties
+.compare-properties {
+	tr {
+		th {
+			&:first-child {
+				width: 20%;
+			}
+
+		}
+
+	}
+
+}
+
+// map box
+.map-box {
+	iframe {
+		margin-bottom: 0;
+	}
+
+	.map-box-info {
+		background: $gray-1;
+		padding: 20px;
+		margin-top: -6px;
+	}
+
+}
+
+// btn-video
+.btn-video {
+	width: 120px;
+	height: 120px;
+	line-height: 120px;
+	font-size: 60px;
+	background: $primary;
+	color: $white;
+	display: inline-block;
+	border-radius: 50%;
+
+	&:hover {
+		background: $white;
+		color: $primary;
+	}
+
+	&:focus {
+		background: $white;
+		color: $primary;
+	}
+
+}
+
+// list-style
+.list-style {
+	li {
+		display: flex;
+	}
+
+}
+
+
+/* table */
+.table-light tr th {
+    color: #495057;
+    background-color: #e9ecef;
+    padding: .75rem;
+    border-color: #dee2e6;
+    border-bottom: 2px solid #dee2e6 !important;
+}
+
+/* Modal */
+.modal-header {
+	.btn-close{
+		&:focus{
+			 box-shadow:inherit;
+		}
+	}
+}
+
+

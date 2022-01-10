@@ -1,0 +1,88 @@
+.accordion {
+	.accordion-item {
+		.accordion-title {
+			margin-bottom: 15px;
+			font-size: 18px;
+
+			.collapsed {
+				color: $gray-8;
+			}
+
+		}
+
+		.accordion-content {
+			padding-bottom: 25px;
+		}
+
+	}
+
+}
+
+// Accordion Style 2
+.accordion-style-2 {
+	.card {
+		border: 1px solid $border-color;
+		margin-bottom: 10px;
+		border-radius: 0;
+
+		&:last-child {
+			margin-bottom: 0px;
+		}
+
+	}
+
+	.card-header {
+		background: transparent;
+		border-bottom: none;
+
+		.accordion-title {
+			display: flex;
+			align-items: center;
+
+			i {
+				font-size: 12px;
+				margin-left: auto;
+			}
+
+		}
+
+	}
+
+	.accordion-content {
+		border-top: 1px solid $border-color;
+	}
+
+	.accordion-title {
+		.btn {
+			display: block;
+			color: $primary;
+			font-size: 18px;
+			padding: 0px;
+			text-decoration: none;
+			width: 100%;
+			text-align: left;
+
+			+ {
+				i {
+					color: $primary;
+				}
+
+			}
+
+		}
+
+		.btn.collapsed {
+			color: $gray-8;
+
+			+ {
+				i {
+					color: $gray-8;
+				}
+
+			}
+
+		}
+
+	}
+
+}

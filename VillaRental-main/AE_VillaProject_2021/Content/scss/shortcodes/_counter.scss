@@ -1,0 +1,36 @@
+.counter {
+	.timer {
+		font-size: 48px;
+		font-weight: 600;
+		font-family: $font-hedding;
+	}
+
+}
+
+.counter.counter-02 {
+	display: flex;
+
+	.counter-icon {
+		.icon {
+			padding-right: 20px;
+			font-size: 40px;
+			color: $primary;
+		}
+
+	}
+
+	.counter-content {
+		vertical-align: top;
+
+		.timer {
+			font-size: 28px;
+			color: $gray-8;
+			font-weight: 600;
+			display: block;
+			line-height: 28px;
+			margin-bottom: 8px;
+		}
+
+	}
+
+}

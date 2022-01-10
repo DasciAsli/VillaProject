@@ -1,0 +1,379 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<AE_VillaProject_2021.Models.EntityFramework.Products>
+
+
+@{
+    ViewBag.Title = "VillaList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section _Breadcrumb
+{
+    @Html.Partial("_Breadcrumb")
+}
+
+
+
+<!--Liste -->
+<section class="space-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="section-title mb-3 mb-lg-4">
+                    <h2><span class="text-primary">@Model.Count()</span> Sonuç</h2>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="property-filter-tag">
+                    <ul class="list-unstyled">
+                        @*<li><a href="#">Yazlık Villa<i class="fas fa-times-circle"></i> </a></li>*@
+                        <li><a class="filter-clear" href="/Home/VillaList/">Aramayı Sıfırla <i class="fas fa-redo-alt"></i> </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 mb-5 mb-lg-0">
+                <div class="sidebar">
+                    <div class="widget">
+                        <div class="widget-title widget-collapse">
+                            <h6>Gelişmiş Filtre</h6>
+                            <a class="ms-auto" data-bs-toggle="collapse" href="#filter-property" role="button" aria-expanded="false" aria-controls="filter-property"> <i class="fas fa-chevron-down"></i> </a>
+                        </div>
+                        <div class="collapse show" id="filter-property">
+                            @using (Html.BeginForm("VillaList", "Home", FormMethod.Post, new { @class = "mt-3" }))
+                            {
+                                <div class="mb-2 select-border">
+                                    @Html.DropDownList("TowndId", (IEnumerable<SelectListItem>)ViewBag.tdp.Sehirler, "Şehir Seçiniz", htmlAttributes: new { @class = "form-control basic-select" })
+
+                                </div>
+                                <div class="mb-2 select-border">
+                                    @Html.DropDownList("DistrictId", (IEnumerable<SelectListItem>)ViewBag.tdp.İlceler, "İlçe Seçiniz", htmlAttributes: new { @class = "form-control basic-select" })
+                                </div>
+                                <div class="mb-2 select-border">
+                                    @Html.DropDownList("ProvinceId", (IEnumerable<SelectListItem>)ViewBag.tdp.Bölgeler, "Bölge Seçiniz", htmlAttributes: new { @class = "form-control basic-select" })
+                                </div>
+
+
+                                <div class="mb-2 select-border">
+                                    <select id="kisiSayisi" name="kisiSayisi" class="form-control basic-select">
+                                        <option>Kişi Sayısı</option>
+                                        <option name="kisiSayisi" value="1">1</option>
+                                        <option name="kisiSayisi" value="2">2</option>
+                                        <option name="kisiSayisi" value="3">3</option>
+                                        <option name="kisiSayisi" value="4">4</option>
+                                        <option name="kisiSayisi" value="5">5</option>
+                                        <option name="kisiSayisi" value="6">6</option>
+                                        <option name="kisiSayisi" value="7">7</option>
+                                        <option name="kisiSayisi" value="8">8</option>
+                                        <option name="kisiSayisi" value="9">9</option>
+                                        <option name="kisiSayisi" value="10">10</option>
+                                        @*@foreach (var item in Model.Where(u => u.ProductDetails.PersonCount != null).OrderBy(u => u.ProductDetails.PersonCount).ToList())
+                                            {
+                                            <option value="@item.ProductDetails.PersonCount">@item.ProductDetails.PersonCount</option>
+                                            }*@
+
+                                    </select>
+                                </div>
+
+
+                                <div class="mb-2 select-border">
+                                    <select name="yatakSayisi" class="form-control basic-select">
+                                        <option>Oda Sayısı</option>
+                                        <option name="yatakSayisi" value="1">1</option>
+                                        <option name="yatakSayisi" value="2">2</option>
+                                        <option name="yatakSayisi" value="3">3</option>
+                                        <option name="yatakSayisi" value="4">4</option>
+                                        <option name="yatakSayisi" value="5">5</option>
+                                        <option name="yatakSayisi" value="6">6</option>
+                                        <option name="yatakSayisi" value="7">7</option>
+                                        <option name="yatakSayisi" value="8">8</option>
+                                        <option name="yatakSayisi" value="9">9</option>
+                                        <option name="yatakSayisi" value="10">10</option>
+                                        @*@foreach (var item in Model.Where(u => u.ProductDetails.RoomCount != null).OrderBy(u => u.ProductDetails.RoomCount).ToList())
+                                            {
+
+                                                <option value="@item.ProductDetails.RoomCount">@item.ProductDetails.RoomCount</option>
+                                            }*@
+
+                                    </select>
+                                </div>
+                                <div class="mb-2 select-border">
+                                    <select name="banyo" class="form-control basic-select">
+                                        <option>Banyo Sayısı</option>
+                                        <option name="banyo" value="1">1</option>
+                                        <option name="banyo" value="2">2</option>
+                                        <option name="banyo" value="3">3</option>
+                                        <option name="banyo" value="4">4</option>
+                                        <option name="banyo" value="5">5</option>
+                                    </select>
+                                </div>
+
+                                @*<div class="mb-2 select-border">
+                                        <select name="Kat" class="form-control basic-select">
+                                            <option>Kat</option>
+                                            <option name="Kat" value="1">01</option>
+                                            <option name="Kat" value="2">02</option>
+                                            <option name="Kat" value="3">03</option>
+                                        </select>
+                                    </div>*@
+                                <div class="mb-2">
+                                    <input class="form-control" name="metrekare" placeholder="Tip (metrekare-min)">
+
+                                </div>
+
+                                <div class="mb-3 property-price-slider mt-3">
+                                    <label class="form-label">Fiyat Aralığı Belirleyiniz</label>
+                                    <div>
+                                        <input style="width:100px" type="text" name="min" placeholder="Min-Tutar" />
+                                        <input style="width: 100px" type="text" name="max" value="" placeholder="Max-Tutar" />
+                                    </div>
+
+                                </div>
+                                <div class="d-grid mb-2">
+                                    <button class="btn btn-primary align-items-center" type="submit"><i class="fas fa-filter me-1"></i><span>Filtrele</span></button>
+                                </div>
+                            }
+                            @if (ViewBag.Message != null)
+                            {
+                                <script type="text/javascript">
+                                 window.onload = function () {
+                                    alert("@ViewBag.Message");
+                                                 };
+                                </script>
+                            }
+
+                        </div>
+                    </div>
+
+                    <div class="widget">
+                        <div class="widget-title widget-collapse">
+                            <h6>Villa Tipleri</h6>
+                            <a class="ms-auto" data-bs-toggle="collapse" href="#type-property" role="button" aria-expanded="false" aria-controls="type-property"> <i class="fas fa-chevron-down"></i> </a>
+                        </div>
+                        <div class="collapse show" id="type-property">
+                            <ul class="list-unstyled mb-0 pt-3">
+                                @foreach (var item in Model)
+                                {
+                                    foreach (var kategori in item.Categories)
+                                    {
+
+                                        <li><a href="@Url.Action("VillaList","Home",new {id=kategori.CategoryId })">@kategori.Name<span class="ms-auto">@kategori.Products.Count()</span></a></li>
+
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="property-filter d-sm-flex">
+                    <ul class="property-short list-unstyled d-sm-flex mb-0">
+                        <li>
+
+                            @using (Html.BeginForm("Sirala", "Home", FormMethod.Get, new { @class = "form-inline" }))
+                            {
+
+                                <div class="form-group d-flex d-block mb-sm-0 mb-3">
+                                    <label class="justify-content-start mb-2 mb-sm-0">Göre Sırala</label>
+                                    <div class="short-by">
+                                        <select name="sirala" class="form-control basic-select">
+                                            <option name="sirala" value="0">En Düşük Fiyat</option>
+                                            <option name="sirala" value="1">En Yüksek Fiyat</option>
+                                            <option name="sirala" value="2">En Popüler</option>
+                                        </select>
+                                    </div>
+                                    <input type="submit" value="Sırala" name="Gönder" style="margin-left:30px; padding:2px !important;" class="btn btn-xs btn-outline-info mb-2 " />
+                                </div>
+
+
+                            }
+
+
+
+
+                        </li>
+                    </ul>
+                    <ul class="property-view-list list-unstyled d-flex mb-0">
+                        @*<li>
+                                <form class="form-inline">
+                                    <div class="form-group d-lg-flex d-block mb-3 mb-sm-0">
+                                        <label class="justify-content-start pe-2 mb-2 mb-sm-0">Göre Sırala </label>
+                                        <div class="short-by">
+                                            <select class="form-control basic-select">
+                                                <option>12</option>
+                                                <option>18 </option>
+                                                <option>24 </option>
+                                                <option>64 </option>
+                                                <option>128</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>*@
+
+                    </ul>
+                </div>
+                <div class="property-item property-col-list mt-4">
+                    @foreach (var item in Model)
+                    {
+                        <div class="row g-0 mb-2 ">
+                            <div class="col-lg-4 col-md-5 ">
+                                <div class="property-image ">
+
+                                    @foreach (var images in item.ProductImages.Where(u => u.IsActive == true).OrderBy(u => u.ProductImage).Take(1).ToList())
+                                    {
+
+
+                                        <img class="img-fluid" src="@images.ImageUrl" alt="Resim Bulunamadı" style="width:327px; height:364px; object-fit:cover;">
+
+                                    }
+
+                                    @*<div class="property-lable">
+                            <span class="badge badge-md bg-primary">Bungalow</span>
+                            <span class="badge badge-md bg-info">Sale </span>
+                        </div>*@
+                                    @*<span class="property-trending" title="trending"><i class="fas fa-bolt"></i></span>*@
+                                    <div class="property-agent">
+                                        <!--satıcı fotoğrafı-->
+                                        @*<div class="property-agent-image">
+                                <img class="img-fluid" src="~/Content/images/avatar/01.jpg" alt="">
+                            </div>*@
+                                        @*<div class="property-agent-info">
+                                <a class="property-agent-name" href="#">Alice Williams</a>
+                                <span class="d-block">Company Agent</span>
+                                <ul class="property-agent-contact list-unstyled">
+                                    <li><a href="#"><i class="fas fa-mobile-alt"></i> </a></li>
+                                    <li><a href="#"><i class="fas fa-envelope"></i> </a></li>
+                                </ul>
+                            </div>*@
+                                    </div>
+                                    <div class="property-agent-popup">
+
+                                        <a href="#"><i class="fas fa-camera"></i> @item.ProductImages.Count</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-7">
+                                <div class="property-details">
+                                    <div class="property-details-inner">
+                                        <div class="property-details-inner-box">
+                                            <div class="property-details-inner-box-left">
+                                                <h5 class="property-title"><a href="property-detail-style-01.html">@item.Title </a></h5>
+                                                <span class="property-address"><i class="fas fa-map-marker-alt fa-xs"></i>@item.SubTitle</span>
+                                                <span class="property-agent-date"><i class="far fa-clock fa-md"></i>@item.RegisterDate.ToString("dd MMMM yyyy")</span>
+                                            </div>
+                                            <div class="property-price">@item.Price ₺<span class="d-block"> <!--aylık mı günlük mü ?--></span> </div>
+                                        </div>
+                                        <ul class="property-info list-unstyled d-flex">
+
+                                            <li class="flex-fill property-bed"><i class="fas fa-bed"></i>Oda Sayısı : <span style="font-size:medium">@item.ProductDetails.RoomCount</span></li>
+                                            <li class="flex-fill property-bath"><i class="fas fa-bath"></i>Banyo Sayısı :<span style="font-size:medium">@item.ProductDetails.BathCount</span></li>
+                                            <li class="flex-fill property-m-sqft"><i class="far fa-square"></i>Alan :<span style="font-size:medium">@item.Metrekare</span></li>
+                                        </ul>
+                                        <p class="mb-0 mt-3">@item.Description</p>
+                                    </div>
+                                    <div class="property-btn">
+                                        <a class="property-link" href="@Url.Action("VillaDetails", "Home", new { id = item.ProductId })">Villa Detayları</a>
+                                        <ul class="property-listing-actions list-unstyled mb-0">
+                                            @*<li class="property-compare"><a data-bs-toggle="tooltip" data-bs-placement="top" title="Compare" href="#"><i class="fas fa-exchange-alt"></i></a></li>*@
+                                            <li class="property-favourites"><a data-bs-toggle="tooltip" data-bs-placement="top" title="Favourite" href="#"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    }
+                    </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <center>
+
+                            @Html.PagedListPager((IPagedList)ViewBag.Pagelist, page => Url.Action("VillaList", "Home", new { page }), new PagedListRenderOptions
+                       {
+
+                           UlElementClasses = new string[] { "pagination pagination-md pagination-gutter  pagination-warning" },
+                           LiElementClasses = new string[] { "page-item" },
+                           LinkToPreviousPageFormat = "Geri",
+                           LinkToNextPageFormat = "İleri",
+                           ClassToApplyToLastListItemInPager = "page-previus",
+                           ClassToApplyToFirstListItemInPager = "page-next",
+
+                           FunctionToTransformEachPageLink = (li, a) =>
+                           {
+                               a.AddCssClass("page-link");
+                               li.InnerHtml = a.ToString();
+                               return li;
+
+                           }
+
+                       })
+
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts
+{
+
+    <script>
+        $(function () {
+            $('#TowndId').change(function () {
+                var id = $('#TowndId').val();
+                $.ajax({
+                    url: '/Home/ilcegetir',
+                    data: { p: id },
+                    type: "POST",
+                    dataType: "Json",
+                    success: function (data) {
+                        console.log(data);
+                        $('#DistrictId').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $('#DistrictId').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                        }
+                    }
+
+                });
+
+            });
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('#DistrictId').change(function () {
+                var id = $('#DistrictId').val();
+                $.ajax({
+                    url: '/Home/bölgegetir',
+                    data: { p: id },
+                    type: "POST",
+                    dataType: "Json",
+                    success: function (data) {
+                        console.log(data);
+                        $('#ProvinceId').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $('#ProvinceId').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                        }
+                    }
+
+                });
+
+            });
+        });
+    </script>
+
+}
+
+
+

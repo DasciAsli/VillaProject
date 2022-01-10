@@ -1,0 +1,22 @@
+﻿<div class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                @switch (ViewBag.Title)
+                {
+                    case "About":<h3>Hakkımızda</h3>break;
+                    case "Contact":<h3>İletişim</h3>break;
+                    case "TermsAndConditions":<h3>Şartlar ve Koşullar</h3>break;
+                    case "VillaDetails":<h3>Villa Detayları</h3>break;
+                    case "VillaList":<h3>Kiralık Villalar</h3>break;
+                    case "AccountProfile":<h3>Profilim</h3>break;
+                    case "AccountSavedHomes":<h3>Kayıtlı Evler</h3>break;
+                    case "AccountSavedRental":<h3>Kiralık Evler</h3>break;
+                    case "Kirala":<h3>Kiralama Sayfası</h3>break;
+                    default:<h3></h3>break;
+                }
+                          
+            </div>
+        </div>
+    </div>
+</div>

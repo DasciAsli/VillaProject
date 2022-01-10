@@ -1,0 +1,104 @@
+﻿@model List<AE_VillaProject_2021.Models.EntityFramework.Messages>
+
+<!--Left sidebar -->
+<div class="nav-left-sidebar sidebar-dark ">
+    <div class="menu-list">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-divider">
+                        ADMİN PANELİ
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="@Url.Action("Index", "Messages")"><i class="fa fa-fw fa-comment-alt"></i>Mesajlarım <span class="btn btn-light btn-xs btn-rounded">@Model.Count</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-globe"></i>Site Ayarları <span class="badge badge-success">6</span></a>
+                        <div id="submenu-1" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@Url.Action("Index", "Abouts")">Hakkımızda</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@Url.Action("Index", "Terms")">Şartlar</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@Url.Action("Index", "Contacts")">İletişim</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@Url.Action("Index", "Categories")">Kategori</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@Url.Action("Index", "Towns")">Şehirler</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@Url.Action("Index", "Districts")">İlçeler</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@Url.Action("Index", "Provinces")">Bölgeler</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@Url.Action("Index", "Products")">Villalar</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Kullanıcı Ayarları <span class="badge badge-success">6</span></a>
+                        <div id="submenu-2" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@Url.Action("Index", "Roles")" ; @*data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2"*@>Roller</a>
+                                    @*<div id="submenu-1-2" class="collapse submenu" style="">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="index.html">E Commerce Dashboard</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="ecommerce-product.html">Product List</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="ecommerce-product-single.html">Product Single</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="ecommerce-product-checkout.html">Product Checkout</a>
+                                                </li>
+                                            </ul>
+                                        </div>*@
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@Url.Action("Index", "Users")">Kullanıcılar</a>
+                                </li>
+
+
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Sales")"><i class="fa fa-fw fa-money-bill-alt"></i>Satış Raporu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="@Url.Action("Index", "Calendar")"><i class="fa fa-fw fa-calendar-alt"></i>Etkinlik Takvimi</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="~/Home/Index"><i class="fa fa-fw fa-desktop"></i>Siteye Git</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/Account/LogOut/"><i class="fa fa-fw fa-window-close"></i>Çıkış Yap</a>
+
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+
+

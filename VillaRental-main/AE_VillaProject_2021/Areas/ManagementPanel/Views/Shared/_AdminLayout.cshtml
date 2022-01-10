@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+
+    @Html.Partial("_Head")
+
+</head>
+
+<body>
+ 
+    <div class="dashboard-main-wrapper">
+
+        @*@Html.Partial("_Navbar")*@
+
+        @Html.Action("Sidebar","Messages")
+     
+        <div class="dashboard-wrapper px-4">
+
+            <div class="dashboard-ecommerce">
+
+                @RenderBody()
+
+            </div>
+
+            @*@Html.Partial("_Footer")*@
+
+        </div>
+       
+    </div>
+
+   @Html.Partial("_Scripts")
+
+</body>
+
+</html>

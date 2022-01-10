@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Head-->
+    @Html.Partial("_Head")
+
+</head>
+
+<body>
+
+
+    <!--Header -->
+    @Html.Action("Header", "Home")
+
+    <!--_Breadcrumb -->
+    @RenderSection("_Breadcrumb", false)
+
+
+    @RenderBody()
+
+
+    <!--Footer-->
+    @Html.Action("Footer", "Home")
+
+    <!--Scripts-->
+    @Html.Partial("_Scripts")
+
+    @RenderSection("Scripts", false)
+</body>
+</html>

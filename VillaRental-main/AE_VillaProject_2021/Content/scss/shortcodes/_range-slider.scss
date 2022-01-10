@@ -1,0 +1,42 @@
+.irs--flat .irs-line {
+	height: 6px;
+}
+
+.irs--flat .irs-bar {
+	background: $primary;
+	height: 6px;
+}
+.irs--flat .irs-handle{
+ width: 0px;
+}
+
+.irs--flat .irs-from,
+.irs--flat .irs-to,
+.irs--flat .irs-single {
+	background: transparent;
+	color: $primary;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.irs--flat .irs-handle > i:first-child,
+.irs--flat .irs-handle > i:first-child {
+	background: $white;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	border: 2px solid $primary;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+.irs--flat .irs-from:before,
+.irs--flat .irs-to:before,
+.irs--flat .irs-single:before {
+	display: none;
+}
+
+.irs--flat .irs-handle.state_hover > i:first-child,
+.irs--flat .irs-handle:hover > i:first-child {
+	background: $primary;
+}

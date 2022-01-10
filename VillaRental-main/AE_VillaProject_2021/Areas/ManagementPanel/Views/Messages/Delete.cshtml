@@ -1,0 +1,73 @@
+﻿@model AE_VillaProject_2021.Models.EntityFramework.Messages
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Mesaj Silme Sayfası</h2>
+
+<h3>Bu mesajı silmek istediğinize emin misiniz?</h3>
+<div>
+    <h4>Mesaj</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <p>Ad</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            <p>Mail</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            <p>Telefon</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            <p>Konu</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            <p>Mesaj</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+        <dt>
+            <p>Tarih</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-outline-dark" /> |
+            @Html.ActionLink("Anasayfa'ya Dön", "Index",null,new {@class="btn btn-outline-dark" })
+        </div>
+    }
+</div>

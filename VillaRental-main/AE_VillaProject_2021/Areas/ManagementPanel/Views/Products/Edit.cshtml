@@ -1,0 +1,395 @@
+﻿@model AE_VillaProject_2021.Models.EntityFramework.Products
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Areas/ManagementPanel/Content/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<h2>Villa Düzenleme Sayfası</h2>
+
+@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Villa</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ProductId)
+        <div class="form-group">
+
+            <div class="col-md-10">
+                @Html.Label("Başlık")
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                @Html.Label("Altbaşlık")
+                @Html.EditorFor(model => model.SubTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SubTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                @Html.Label("Açıklama")
+                @Html.TextAreaFor(model => model.Description, 10, 116, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+
+            <div class="col-md-10">
+                @Html.Label("Resimler")
+                <br />
+                <div class="avatar-group">
+                    @foreach (var item in Model.ProductImages)
+                    {
+                        <div class="user-avatar user-avatar-xl dropdown">
+                            <a href="#" data-toggle="dropdown">
+                                <img src="@item.ImageUrl" alt="Product Avatar" class="rounded-circle user-avatar-xl">
+                                <span class="avatar-badge has-indicator online">
+                                    <i class="fa fa-check"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="@Url.Action("imageDelete","Products",new {imageId=item.ProductImage ,id=item.ProductId })" class="dropdown-item">Sil</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+
+                @*<img src="@item.ImageUrl" class="w-25" alt="Resim Yok" /><a href="@Url.Action("imageDelete","Products",new {imageId=item.ProductImage ,id=item.ProductId })"><i class="fa fa-times" aria-hidden="true"></i></a>*@
+
+                <input type="file" name="imgFiles" value="" />
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                @Html.Label("Fiyat")
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Metrekare")
+                @Html.EditorFor(model => model.Metrekare, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Metrekare, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Durum")
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsActive)
+                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Depozito")
+                @Html.EditorFor(model => model.Deposit, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Deposit, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <p>Kategoriler</p>
+                @if (ViewBag.CategoryId != null)
+                {
+
+                    foreach (var item in (List<AE_VillaProject_2021.Models.EntityFramework.Categories>)ViewBag.CategoryId)
+                    {
+                        if (Model.Categories.Contains(item))
+                        {
+                            <input type="checkbox" name="CategoryId" value=@item.CategoryId checked />
+                            <span>@item.Name</span>
+                        }
+
+
+                        else
+                        {
+                            <input type="checkbox" name="CategoryId" value=@item.CategoryId />
+                            <span>@item.Name</span>
+                        }
+
+                    }
+                }
+
+                @Html.ValidationMessageFor(model => model.Categories, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Oda Sayısı")
+                @Html.EditorFor(model => model.ProductDetails.RoomCount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductDetails.RoomCount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Banyo Sayısı")
+                @Html.EditorFor(model => model.ProductDetails.BathCount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductDetails.BathCount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Balkon Sayısı")
+                @Html.EditorFor(model => model.ProductDetails.BalconyCount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductDetails.BalconyCount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Garaj Sayısı")
+                @Html.EditorFor(model => model.ProductDetails.GarageCount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductDetails.GarageCount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Havuz Sayısı")
+                @Html.EditorFor(model => model.ProductDetails.PoolCount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductDetails.PoolCount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Kişi Sayısı")
+                @Html.EditorFor(model => model.ProductDetails.PersonCount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductDetails.PersonCount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Tv ")
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ProductProperties.Tv)
+                    @Html.ValidationMessageFor(model => model.ProductProperties.Tv, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Klima ")
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ProductProperties.Klima)
+                    @Html.ValidationMessageFor(model => model.ProductProperties.Klima, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Wifi ")
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ProductProperties.Wifi)
+                    @Html.ValidationMessageFor(model => model.ProductProperties.Wifi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Sauna ")
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ProductProperties.Sauna)
+                    @Html.ValidationMessageFor(model => model.ProductProperties.Sauna, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Buzdolabı ")
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ProductProperties.Fridge)
+                    @Html.ValidationMessageFor(model => model.ProductProperties.Fridge, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Çamaşır Makinesi ")
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ProductProperties.Washer)
+                    @Html.ValidationMessageFor(model => model.ProductProperties.Washer, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Barbekü")
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ProductProperties.Barbecue)
+                    @Html.ValidationMessageFor(model => model.ProductProperties.Barbecue, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Spor")
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ProductProperties.Gym)
+                    @Html.ValidationMessageFor(model => model.ProductProperties.Gym, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Eğitim Yeri")
+                @Html.EditorFor(model => model.ProductNearPlace.Education, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductNearPlace.Education, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Eğitim Yeri Uzaklığı")
+                @Html.EditorFor(model => model.ProductNearPlace.EducationDistance, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductNearPlace.EducationDistance, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Hastane")
+                @Html.EditorFor(model => model.ProductNearPlace.Hospital, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductNearPlace.Hospital, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Hastane Uzaklığı")
+                @Html.EditorFor(model => model.ProductNearPlace.HospitalDistance, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductNearPlace.HospitalDistance, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Ulaşım Tipi")
+                @Html.EditorFor(model => model.ProductNearPlace.TransportationType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductNearPlace.TransportationType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Ulaşım Aracına Uzaklık")
+                @Html.EditorFor(model => model.ProductNearPlace.TransportationDisance, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductNearPlace.TransportationDisance, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.ProductNearPlace.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.ProductNearPlace.IsActive)
+                        @Html.ValidationMessageFor(model => model.ProductNearPlace.IsActive, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Adres")
+                @Html.TextAreaFor(model => model.ProductAddresses.Adress, 5, 116, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductAddresses.Adress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Şehir")
+                @Html.DropDownList("TowndId", (IEnumerable<SelectListItem>)ViewBag.tdp.Sehirler, "Şehir Seçiniz", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductAddresses.Towns.TowndId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group ">
+            <div class="col-md-10">
+                @Html.Label("İlçe")
+                @Html.DropDownList("DistrictId", (IEnumerable<SelectListItem>)ViewBag.tdp.İlceler, "İlçe Seçiniz", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductAddresses.District.DistrictId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group ">
+            <div class="col-md-10">
+                @Html.Label("Bölge")
+                @Html.DropDownList("ProvinceId", (IEnumerable<SelectListItem>)ViewBag.tdp.Bölgeler, "Bölge Seçiniz", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductAddresses.Province.ProvinceId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Kaydet" class="btn btn-outline-dark" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="col-md-10">
+    @Html.ActionLink("Anasayfa'ya Dön", "Index", null, new { @class = "btn btn-outline-dark" })
+</div>
+
+<script>
+    $(function () {
+        $('#TowndId').change(function () {
+            var id = $('#TowndId').val();
+            $.ajax({
+                url: '/Products/ilcegetir',
+                data: { p: id },
+                type: "POST",
+                dataType: "Json",
+                success: function (data) {
+                    console.log(data);
+                    $('#DistrictId').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#DistrictId').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                    }
+                }
+
+            });
+
+        });
+    });
+
+
+</script>
+
+<script>
+    $(function () {
+        $('#DistrictId').click(function () {
+            var id = $('#DistrictId').val();
+            $.ajax({
+                url: '/Products/bölgegetir',
+                data: { p: id },
+                type: "POST",
+                dataType: "Json",
+                success: function (data) {
+                    console.log(data);
+                    $('#ProvinceId').empty();
+
+                    for (var i = 0; i < data.length; i++) {
+                        $('#ProvinceId').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                    }
+                }
+
+            });
+
+        });
+    });
+
+
+</script>

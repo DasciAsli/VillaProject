@@ -1,0 +1,76 @@
+// datetime picker
+.bootstrap-datetimepicker-widget {
+	table {
+		td.active {
+			background-color: $primary;
+
+			&:hover {
+				background-color: $primary;
+			}
+
+		}
+
+		td.day {
+			height: 30px;
+			line-height: 30px;
+			width: 40px;
+			font-size: 14px;
+		}
+
+		th {
+			font-size: 14px;
+		}
+
+		td {
+			span.active {
+				background: $primary;
+			}
+
+		}
+
+	}
+
+}
+
+.bootstrap-datetimepicker-widget {
+	padding: 0 !important;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu {
+	width: auto;
+	padding: 0;
+}
+
+.bootstrap-datetimepicker-widget .timepicker-hour, 
+.bootstrap-datetimepicker-widget .timepicker-minute, 
+.bootstrap-datetimepicker-widget .timepicker-second {
+	width: auto;
+}
+
+.bootstrap-datetimepicker-widget table td {
+    height: auto;
+    line-height: inherit;
+}
+
+.bootstrap-datetimepicker-widget table td.day:hover, 
+.bootstrap-datetimepicker-widget table td.hour:hover, 
+.bootstrap-datetimepicker-widget table td.minute:hover, 
+.bootstrap-datetimepicker-widget table td.second:hover {
+	color: $primary;
+	background-color: transparent;
+}
+
+.bootstrap-datetimepicker-widget table td span {
+	width: auto;
+	height: auto;
+    line-height: inherit;
+}
+
+.bootstrap-datetimepicker-widget table td span:hover {
+	background: transparent;
+	color: $primary;
+}
+
+.form-group.overflow-hidden {
+    overflow: inherit !important;
+}

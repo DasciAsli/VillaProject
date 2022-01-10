@@ -1,0 +1,88 @@
+﻿@model List<AE_VillaProject_2021.Models.EntityFramework.Abouts>
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section _Breadcrumb
+{
+    @Html.Partial("_Breadcrumb")
+}
+
+<!--About -->
+<section class="space-ptb bg-holder">
+    <div class="container">
+        @foreach (var item in Model)
+        {
+
+
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-9">
+                    <div class="text-center">
+                        <h1 class="text-primary mb-4">@item.Title</h1>
+                        <h3 class="px-sm-5 mb-4 lead fw-normal">@item.SubTitle </h3>
+                        <div class="popup-video">
+                            <p>@Html.Raw(@item.Description)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title text-center">
+                    <h2>Bizi tercih etmeniz için birçok neden</h2>
+                    <p>Acentemizin birçok uzmanlık alanı vardır, ancak MÜŞTERİLERİMİZ bizim asıl uzmanlığımızdır.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-lg-3 col-sm-6">
+                <div class="feature-info h-100">
+                    <div class="feature-info-icon">
+                        <i class="flaticon-like"></i>
+                    </div>
+                    <div class="feature-info-content">
+                        <h6 class="mb-3 feature-info-title">Mükemmel itibar</h6>
+                        <p class="mb-0">Kapsamlı listeleme veri tabanımız ve piyasa bilgileri, piyasa ve seçtiğiniz evin değeri hakkında en doğru bilgiyi verir.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="feature-info h-100">
+                    <div class="feature-info-icon">
+                        <i class="flaticon-agent"></i>
+                    </div>
+                    <div class="feature-info-content">
+                        <h6 class="mb-3 feature-info-title">Lider Firma</h6>
+                        <p class="mb-0">Türkiye’nin en büyük ve en seçkin villa kiralama portföyüne sahip olup, Türkiye’de Villa kiralamasına aracılık eden lider firmadır</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="feature-info h-100">
+                    <div class="feature-info-icon">
+                        <i class="flaticon-like-1"></i>
+                    </div>
+                    <div class="feature-info-content">
+                        <h6 class="mb-3 feature-info-title">İç huzur</h6>
+                        <p class="mb-0">Acentenizin işleminizin her detayını baştan sona ele aldığından emin olabilirsiniz..</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="feature-info h-100">
+                    <div class="feature-info-icon">
+                        <i class="flaticon-house-1"></i>
+                    </div>
+                    <div class="feature-info-content">
+                        <h6 class="mb-3 feature-info-title">Tonlarca Seçenek</h6>
+                        <p class="mb-0">Yaşamayı seveceğiniz bir yeri keşfedin. Geniş envanterimizden istediğiniz evi seçin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

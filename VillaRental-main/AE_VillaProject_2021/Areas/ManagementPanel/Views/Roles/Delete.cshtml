@@ -1,0 +1,53 @@
+﻿@model AE_VillaProject_2021.Models.EntityFramework.Roles
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Rol Silme Sayfası</h2>
+<div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Herhangi bir rolü sildiğiniz takdirde o role sahip olan tüm kullanıcılar silinecektir!</strong>
+</div>
+<h3>Silmek istediğinize emin misiniz?</h3>
+<div>
+    <h4>Roller</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <p>Rol Adı</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoleName)
+        </dd>
+
+        <dt>
+            <p>Durum</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            <p>Kayıt Tarihi</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-outline-dark" /> |
+            @Html.ActionLink("Anasayfa'ya Dön", "Index",null,new {@class="btn btn-outline-dark" })
+        </div>
+    }
+</div>

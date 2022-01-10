@@ -1,0 +1,47 @@
+/*
+
+Template: Real Villa - Real Estate HTML5 Template
+Version: 2.0.0
+Author: potenzaglobalsolutions
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This is main stylesheet of template, This file contains the styling for the actual Template.
+
+*/
+
+// Core files
+@import "variables";
+@import "typography";
+@import "helpers";
+
+// Shortcodes
+@import "shortcodes/accordion";
+@import "shortcodes/feature-info";
+@import "shortcodes/testimonial";
+@import "shortcodes/accordion";
+@import "shortcodes/newsletter";
+@import "shortcodes/counter";
+@import "shortcodes/tabs";
+@import "shortcodes/owl-carousel";
+@import "shortcodes/datetimepicker";
+@import "shortcodes/pricing";
+@import "shortcodes/countdown";
+@import "shortcodes/button";
+@import "shortcodes/range-slider";
+@import "shortcodes/select";
+
+// Structure
+@import "header";
+@import "sidebar";
+@import "banner";
+@import "layout";
+@import "listing";
+
+// Pages
+@import "account";
+@import "blog";
+@import "error";
+@import "footer";
+
+// Responsive
+@import "responsive";

@@ -1,0 +1,90 @@
+﻿
+@model List<AE_VillaProject_2021.Models.EntityFramework.Contacts>
+
+<footer class="footer bg-dark space-pt">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+
+                <div class="footer-contact-info">
+                    @foreach (var item2 in (List<AE_VillaProject_2021.Models.EntityFramework.Abouts>)ViewBag.About)
+                    {
+                        <h5 class="text-primary mb-4">@item2.Title</h5>
+                        <p class="text-white mb-4">@item2.SubTitle</p>
+                    }
+
+                    <ul class="list-unstyled mb-0">
+                        @foreach (var item in Model)
+                        {
+                            <li> <b> <i class="fas fa-map-marker-alt"></i></b><span>@item.Adress</span> </li>
+                            <li> <b><i class="fas fa-microphone-alt"></i></b><span>@item.PhoneNumber</span> </li>
+                            <li> <b><i class="fas fa-headset"></i></b><span>@item.Email</span> </li>
+                        }
+                    </ul>
+                </div>
+
+
+
+            </div>
+            <div class="col-lg-4 col-md-6 mt-4 mt-md-0 ">
+                <div class="footer-link ">
+                    <h5 class="text-primary mb-4">Kullanışlı Linkler</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li> <a href="/Home/VillaList/">Kiralık Villalar </a> </li>
+                        <li> <a href="/Home/About/">Hakkımızda </a> </li>
+                        <li> <a href="/Home/TermsAndConditions/">Şartlar ve Koşullar </a> </li>
+                        <li> <a href="/Home/Contact/">İletişim</a> </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+                <div class="footer-recent-List">
+                    <h5 class="text-primary mb-4">Son Listelenen Villalar</h5>
+                    <ul class="list-unstyled mb-0">
+
+                        @foreach (var item in (List<AE_VillaProject_2021.Models.EntityFramework.Products>)ViewBag.Villa)
+                        {
+                            <li>
+                                <div class="footer-recent-list-item">
+                                    @foreach (var item2 in item.ProductImages.Where(x => x.IsActive == true).OrderBy(x => x.ProductId).Take(1).ToList())
+                                    {
+                                        <img class="img-fluid" src="@item2.ImageUrl" alt="">
+                                    }
+
+                                    <div class="footer-recent-list-item-info">
+
+                                        <h6 class="text-white"><a class="category font-md mb-2" href="property-detail-style-01.html">@item.Title</a></h6>
+                                        <a class="address mb-2 font-sm" href="#">@item.ProductAddresses.Adress</a>
+                                        <span class="price text-white">$@item.Price</span>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-start">
+                    <h4 style="color: #00B7EB" class="fw-bold">LOGO</h4>
+                    @*<a href="index.html"><img class="img-fluid footer-logo" src="~/Content/images/logo-light.svg" alt=""> </a>*@
+                </div>
+                <div class="col-md-4 text-center my-3 mt-md-0 mb-md-0">
+                    <a id="back-to-top" class="back-to-top" href="#"><i class="fas fa-angle-double-up"></i> </a>
+                </div>
+                <div class="col-md-4 text-center text-md-end">
+                    <p class="mb-0 text-white">
+                        &copy;Copyright <span id="copyright">
+                            <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+                        </span> <a href="#"> Real villa </a> All Rights Reserved
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+

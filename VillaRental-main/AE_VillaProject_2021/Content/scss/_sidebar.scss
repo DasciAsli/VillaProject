@@ -1,0 +1,134 @@
+.sticky-top {
+  top: 80px;
+}
+
+.sidebar {
+  .widget {
+    margin-bottom: 30px;
+    position: relative;
+
+    .widget-title {
+      margin-bottom: 24px;
+    }
+
+    .widget-collapse {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+    }
+
+    border: 1px solid $border-color;
+    padding: 20px;
+
+    &:after {
+      position: absolute;
+      left: -4px;
+      width: 1px;
+      top: 0;
+      height: 100%;
+      content: "";
+      background: $border-color;
+    }
+    &:before {
+      position: absolute;
+      right: -4px;
+      width: 1px;
+      top: 0;
+      height: 100%;
+      content: "";
+      background: $border-color;
+    }
+
+    ul {
+      li {
+        margin-bottom: 10px;
+
+        a {
+          display: flex;
+          color: $gray-3;
+
+          &:hover {
+            color: $primary;
+          }
+
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+      }
+
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .property-item {
+      .property-image {
+        img {
+          width: 100%;
+        }
+
+      }
+
+      .property-details {
+        .property-info {
+          li {
+            margin-bottom: 0;
+            text-align: left;
+
+            i {
+              display: block;
+            }
+
+          }
+
+        }
+
+        .property-listing-actions {
+          border-bottom: 0;
+        }
+
+      }
+
+    }
+
+    .recent-list-item {
+      display: flex;
+      margin-bottom: 10px;
+
+      img {
+        height: 80px;
+      }
+
+      .recent-list-item-info {
+        padding-left: 20px;
+
+        a {
+          display: block;
+          font-family: $font-hedding;
+        }
+
+        .address {
+          color: $gray-9;
+          font-weight: 600;
+
+          &:hover {
+            color: $primary;
+          }
+
+        }
+
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+    }
+
+  }
+
+}

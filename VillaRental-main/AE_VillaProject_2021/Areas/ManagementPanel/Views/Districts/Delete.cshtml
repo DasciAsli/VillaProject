@@ -1,0 +1,61 @@
+﻿@model AE_VillaProject_2021.Models.EntityFramework.District
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>İlçe Silme Sayfası</h2>
+<div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Herhangi bir ilçeyi sildiğiniz takdirde o ilçedeki tüm villalar ve tüm mahalleler silinecektir!</strong>
+</div>
+
+<h3>Bu ilçeyi silmek istediğinize emin misiniz?</h3>
+<div>
+    <h4>İlçe</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <p>Ad</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            <p>Durum</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            <p>Kayıt Tarihi</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+
+        <dt>
+            <p>Şehir</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Towns.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-outline-dark" /> |
+            @Html.ActionLink("Anasayfa'ya Dön", "Index",null,new { @class="btn btn-outline-dark" })
+        </div>
+    }
+</div>

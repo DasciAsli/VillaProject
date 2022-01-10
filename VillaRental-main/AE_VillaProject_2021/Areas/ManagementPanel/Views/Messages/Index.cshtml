@@ -1,0 +1,145 @@
+﻿@model IEnumerable<AE_VillaProject_2021.Models.EntityFramework.Messages>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>Mesajlar Sayfası</h2>
+
+<div class="row">
+    <!-- contextual table -->
+    <!-- ============================================================== -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Hakkımızda Sayfası</h5>
+            <div class="card-body">
+                <div class="table-responsive ">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-primary">
+                                <th>
+                                    <p>Ad</p>
+                                </th>
+                                <th>
+                                    <p>Mail</p>
+                                </th>
+                                <th>
+                                    <p>Telefon</p>
+                                </th>
+                                <th>
+                                    <p>Konu</p>
+                                </th>
+                                <th>
+                                    <p>Mesaj</p>
+                                </th>                               
+                                <th>
+                                    <p>Tarih</p>
+                                </th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                if (item.IsActive == false)
+                                {
+                                    <tr class="bg-danger-light">
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @if (item.Mail.Length > 10)
+                                            {
+                                                <p>@item.Mail.Substring(0, 10) ..</p>
+                                            }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Mail)
+                                            }
+
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Phone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Subject)
+                                        </td>
+                                        <td>
+                                            @if (item.Message.Length > 10)
+                                            {
+                                                <p>@item.Message.Substring(0, 10) ..</p>
+                                            }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Message)
+                                            }
+
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.RegisterDate)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Detay", "Details", new { id = item.MessageId }, new { @class = "btn btn-outline-dark" }) |
+                                            @Html.ActionLink("Sil", "Delete", new { id = item.MessageId }, new { @class = "btn btn-outline-dark" })
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr >
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @if (item.Mail.Length > 10)
+                                            {
+                                                <p>@item.Mail.Substring(0, 10) ..</p>
+                                            }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Mail)
+                                            }
+
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Phone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Subject)
+                                        </td>
+                                        <td>
+                                            @if (item.Message.Length > 10)
+                                            {
+                                                <p>@item.Message.Substring(0, 10) ..</p>
+                                            }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Message)
+                                            }
+
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.RegisterDate)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Detay", "Details", new { id = item.MessageId }, new { @class = "btn btn-outline-dark" }) |
+                                            @Html.ActionLink("Sil", "Delete", new { id = item.MessageId }, new { @class = "btn btn-outline-dark" })
+                                        </td>
+                                    </tr>
+                                }
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

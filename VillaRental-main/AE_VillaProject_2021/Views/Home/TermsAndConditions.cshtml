@@ -1,0 +1,27 @@
+﻿@model List<AE_VillaProject_2021.Models.EntityFramework.Terms>
+@{
+    ViewBag.Title = "TermsAndConditions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section _Breadcrumb
+{
+    @Html.Partial("_Breadcrumb")
+}
+
+<!--Terms and conditions -->
+<section class="space-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">            
+                @foreach (var item in Model)
+                {
+                    <h6 class="text-primary">@item.Title</h6>
+                    <p class="mb-20">@item.Description</p>
+                }
+                @*<a class="btn btn-primary" href="#"><span>Accept</span></a>
+                <a class="btn btn-dark" href="#"><span>Close</span></a>*@
+            </div>
+        </div>
+    </div>
+</section>

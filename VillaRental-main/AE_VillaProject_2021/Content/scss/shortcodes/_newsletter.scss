@@ -1,0 +1,16 @@
+.newsletter {
+	position: relative;
+
+	.form-control {
+		padding-right: 150px;
+	}
+
+	.btn {
+		position: absolute;
+		right: 0;
+		line-height: 20px;
+		top: 0;
+		padding: 14px 30px;
+	}
+
+}

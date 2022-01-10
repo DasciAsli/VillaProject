@@ -1,0 +1,109 @@
+﻿@model List<AE_VillaProject_2021.Models.EntityFramework.Products>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Areas/ManagementPanel/Content/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<!--Banner -->
+<section class="banner bg-holder bg-overlay-black-30" style="background-image: url('/Content/images/banner-01.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 position-relative">
+                <h1 class="text-white text-center mb-2">Real Villa İle Kalıcı Zenginlik Yaratın</h1>
+                <p class="lead text-center text-white mb-4 fw-normal">Hayalinizi gerçekleştirmek için bir adım atın. #Hareket etme zamanı</p>
+                <div class="property-search-field bg-white">
+                    <div class="property-search-item">
+                        <div class="row basic-select-wrapper">
+                            <div class="form-group col-lg-3 col-md-6">
+                                <label class="form-label">Şehir</label>
+                                @Html.DropDownList("TowndId", (IEnumerable<SelectListItem>)ViewBag.tdp.Sehirler, "Şehir Seçiniz", htmlAttributes: new { @class = "form-control basic-select" })
+                            </div>
+                            <div class="form-group col-lg-3 col-md-6">
+                                <label class="form-label">Bölge</label>
+                                @Html.DropDownList("DistrictId", (IEnumerable<SelectListItem>)ViewBag.tdp.İlceler, "İlçe Seçiniz", htmlAttributes: new { @class = "form-control basic-select" })
+                            </div>
+                            <div class="form-group col-lg-3 col-md-6">
+                                <label class="form-label">Villa Tipi</label>
+                                @Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewBag.Category, "Kategori Seçiniz", htmlAttributes: new { @class = "form-control basic-select" })
+
+                            </div>
+                            <div class="form-group d-flex col-lg-3  col-md-6">
+                                <center>
+                                    <span class="align-items-center ms-3  d-lg-block "><a class="btn btn-primary d-flex align-items-center" id="villaGetir" href="#"><i class="fas fa-search me-1"></i><span>Ara</span></a></span>
+                                </center>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@*Villaların getirildiği kısım partialview olarak ayarlandı*@
+<section class="space-pb mt-5" id="Product">
+    @Html.Partial("_VillaGetir", Model)
+    
+</section>
+
+
+
+@*Şehir ve ilçenin birbirine bağımlı şekilde açılması için oluşturulan script*@
+<script>
+    $(function () {
+        $('#TowndId').change(function () {
+            var id = $('#TowndId').val();
+            $.ajax({
+                url: '/Home/ilcegetir',
+                data: { p: id },
+                type: "POST",
+                dataType: "Json",
+                success: function (data) {
+                    console.log(data);
+                    $('#DistrictId').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#DistrictId').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                    }
+                }
+
+            });
+        });
+    });
+
+
+</script>
+
+
+
+@*Filtreleme işlemi için oluşturulan script*@
+<script>
+
+    $(function () {
+        $('#villaGetir').click(function () {
+            var townid = $('#TowndId').val();
+            var districtid = $('#DistrictId').val();
+            var categoryid = $('#CategoryId').val();
+            $.ajax({
+                url: '/Home/villagetir',
+                data: { town: townid, district: districtid, category: categoryid },
+                method: "POST",
+                success: function (data) {
+                    $('#Product').html(data);
+                },
+                error: function () {
+                    alert('Villalar Filtrelenemedi')
+                }
+
+            });
+        });
+    });
+
+</script>
+
+
+
+
+

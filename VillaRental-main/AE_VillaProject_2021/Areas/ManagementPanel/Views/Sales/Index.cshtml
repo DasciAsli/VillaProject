@@ -1,0 +1,139 @@
+﻿@model IEnumerable<AE_VillaProject_2021.Models.EntityFramework.Sales>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+
+<br />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Satış Raporlama Sayfası</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+</head>
+<body>
+    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>Kullanıcı Adı</th>
+                <th>Villa Adı</th>
+                <th>Giriş Tarihi</th>
+                <th>Çıkış Tarihi</th>
+                <th>Kiralama Tarihi</th>
+                <th>Toplam Fiyat</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.Users.Name  @x.Users.SurName</td>
+                    <td>@x.Products.Title</td>
+                    <td>@x.EntryDate.ToString("dd-MMMM-yyyy")</td>
+                    <td>@x.ReleaseDate.ToString("dd-MMMM-yyyy")</td>
+                    <td>@x.RegisterDate.ToString("dd-MMMM-yyyy")</td>
+                    <td>@x.TotalPrice</td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+    <script>
+	$(document).ready(function() {
+	    var table = $('#example').DataTable( {
+	        lengthChange: false,
+	        buttons: [ 'copy', 'excel', 'csv', 'pdf', 'colvis' ]
+	    } );
+
+	    table.buttons().container()
+	        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+	} );
+    </script>
+</body>
+</html>
+
+@*<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegisterDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Products.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegisterDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Products.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.SalesId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SalesId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SalesId })
+            </td>
+        </tr>
+    }
+
+</table>*@

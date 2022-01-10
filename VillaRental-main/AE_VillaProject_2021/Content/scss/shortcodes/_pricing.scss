@@ -1,0 +1,28 @@
+.pricing {
+	background: $gray-1;
+	padding: 30px;
+
+	.pricing-price {
+		strong {
+			color: $primary;
+			font-size: 40px;
+		}
+
+	}
+
+	.pricing-list {
+		margin-top: 20px;
+		margin-bottom: 0;
+
+		li {
+			padding: 6px 0;
+
+			&:last-child {
+				padding-bottom: 0;
+			}
+
+		}
+
+	}
+
+}
