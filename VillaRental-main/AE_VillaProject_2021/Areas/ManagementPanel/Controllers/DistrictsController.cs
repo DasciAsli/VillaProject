@@ -92,6 +92,32 @@ namespace AE_VillaProject_2021.Areas.ManagementPanel.Controllers
                 District update = db.District.Find(district.DistrictId);
                 update.Name = district.Name;
                 update.IsActive = district.IsActive;
+                if (update.IsActive == false)
+                {
+                    var bölgeler = db.Province.Where(x => x.DistrictId == district.DistrictId).ToList();
+                    foreach (var item in bölgeler)
+                    {
+                        item.IsActive = false;
+                    }
+                    var villalar = db.Products.Where(x => x.ProductAddresses.DistrictId == district.DistrictId).ToList();
+                    foreach (var item in villalar)
+                    {
+                        item.IsActive = false;
+                    }
+                }
+                if (update.IsActive == true)
+                {
+                    var bölgeler = db.Province.Where(x => x.DistrictId == district.DistrictId).ToList();
+                    foreach (var item in bölgeler)
+                    {
+                        item.IsActive = true;
+                    }
+                    var villalar = db.Products.Where(x => x.ProductAddresses.DistrictId == district.DistrictId).ToList();
+                    foreach (var item in villalar)
+                    {
+                        item.IsActive = true;
+                    }
+                }
                 update.RegisterDate = DateTime.Now;
                 update.TownId = district.TownId;
                 db.SaveChanges();

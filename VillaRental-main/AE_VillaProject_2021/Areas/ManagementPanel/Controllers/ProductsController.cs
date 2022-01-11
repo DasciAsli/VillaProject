@@ -96,7 +96,7 @@ namespace AE_VillaProject_2021.Areas.ManagementPanel.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (CategoryId.Count() > 0)
+                if (CategoryId.Count() != 0)
                 {
                     foreach (var item in CategoryId)
                     {

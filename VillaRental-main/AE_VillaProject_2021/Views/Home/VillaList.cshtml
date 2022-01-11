@@ -234,23 +234,23 @@
                                     }
 
                                     @*<div class="property-lable">
-                            <span class="badge badge-md bg-primary">Bungalow</span>
-                            <span class="badge badge-md bg-info">Sale </span>
-                        </div>*@
+                                            <span class="badge badge-md bg-primary">Bungalow</span>
+                                            <span class="badge badge-md bg-info">Sale </span>
+                                        </div>*@
                                     @*<span class="property-trending" title="trending"><i class="fas fa-bolt"></i></span>*@
                                     <div class="property-agent">
                                         <!--satıcı fotoğrafı-->
                                         @*<div class="property-agent-image">
-                                <img class="img-fluid" src="~/Content/images/avatar/01.jpg" alt="">
-                            </div>*@
+                                                <img class="img-fluid" src="~/Content/images/avatar/01.jpg" alt="">
+                                            </div>*@
                                         @*<div class="property-agent-info">
-                                <a class="property-agent-name" href="#">Alice Williams</a>
-                                <span class="d-block">Company Agent</span>
-                                <ul class="property-agent-contact list-unstyled">
-                                    <li><a href="#"><i class="fas fa-mobile-alt"></i> </a></li>
-                                    <li><a href="#"><i class="fas fa-envelope"></i> </a></li>
-                                </ul>
-                            </div>*@
+                                                <a class="property-agent-name" href="#">Alice Williams</a>
+                                                <span class="d-block">Company Agent</span>
+                                                <ul class="property-agent-contact list-unstyled">
+                                                    <li><a href="#"><i class="fas fa-mobile-alt"></i> </a></li>
+                                                    <li><a href="#"><i class="fas fa-envelope"></i> </a></li>
+                                                </ul>
+                                            </div>*@
                                     </div>
                                     <div class="property-agent-popup">
 
@@ -281,15 +281,45 @@
                                         <a class="property-link" href="@Url.Action("VillaDetails", "Home", new { id = item.ProductId })">Villa Detayları</a>
                                         <ul class="property-listing-actions list-unstyled mb-0">
                                             @*<li class="property-compare"><a data-bs-toggle="tooltip" data-bs-placement="top" title="Compare" href="#"><i class="fas fa-exchange-alt"></i></a></li>*@
-                                            <li class="property-favourites"><a data-bs-toggle="tooltip" data-bs-placement="top" title="Favourite" href="#"><i class="far fa-heart"></i></a></li>
+                                            <li class="property-favourites">
+                                                <a onclick="favori(@(item.ProductId))" href="#">
+
+                                                    @if (Session["Name"] != null)
+                                                    {
+                                                        var count = 0;
+                                                        foreach (var item2 in (List<AE_VillaProject_2021.Models.EntityFramework.Users>)ViewBag.User)
+                                                        {
+                                                            foreach (var item3 in item2.FavoriProducts)
+                                                            {
+                                                                if (item.ProductId == item3.ProductId)
+                                                                {
+                                                                    <i class="fas fa-heart text-primary "></i> break;
+                                                                }
+                                                                else
+                                                                {
+                                                                    count++;
+                                                                }
+
+                                                            }
+                                                            if (count == item2.FavoriProducts.Count)
+                                                            {
+                                                                <i class="fas fa-heart"></i>}
+                                                        }
+
+                                                    }
+                                                    @if (Session["Name"] == null)
+                                                    {
+                                                        <i class="fas fa-heart"></i>}
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                           
+
                         </div>
                     }
-                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-12">
@@ -371,6 +401,22 @@
 
             });
         });
+    </script>
+
+    <script>
+        function favori(ProductId) {
+            $.ajax({
+                url: '/Account/AccountFavourite',
+                method: 'GET',
+                data: { ProductId },
+                success: function (data) {
+                    alert("Başarılı");
+                },
+                error: function (data) {
+                    alert("Başarısız");
+                }
+            });
+        };
     </script>
 
 }

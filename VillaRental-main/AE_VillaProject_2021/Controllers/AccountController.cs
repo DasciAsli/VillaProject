@@ -30,6 +30,15 @@ namespace AE_VillaProject_2021.Controllers
             if (ModelState.IsValid)
             {
                 Users update = db.Users.FirstOrDefault(X => X.Name == users.Name);
+                if (update.Password==users.Password)
+                {
+                    update.Password = users.Password;
+                }
+                else
+                {
+                    var hash = users.Password.GetHashCode().ToString();
+                    update.Password = hash;
+                }
                 if (imgFile != null)
                 {
                     ImageUpload.DeleteByPath(update.UserDetails.ImageUrl);
@@ -37,9 +46,7 @@ namespace AE_VillaProject_2021.Controllers
                 }
                 update.Name = users.Name;
                 update.SurName = users.SurName;
-                update.Email = users.Email;
-                var hash = users.Password.GetHashCode().ToString();
-                update.Password = hash;
+                update.Email = users.Email;                
                 update.IsActive = true;
                 update.RegisterDate = DateTime.Now;
                 foreach (var item in db.Roles)

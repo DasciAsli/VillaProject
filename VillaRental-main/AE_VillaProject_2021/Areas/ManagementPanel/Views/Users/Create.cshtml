@@ -6,6 +6,9 @@
 }
 
 <h2>Yeni Kullanıcı Oluştur</h2>
+<div class="alert alert-primary">
+    <strong class="text-danger"> *   </strong>ile işaretli alanların doldurulması zorunludur.
+</div>
 
 @using (Html.BeginForm("Create", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -17,7 +20,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             <div class="col-md-10">
-                <h4>Ad</h4>
+                <h4>Ad <span class="text-danger"> *</span></h4>
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
@@ -25,7 +28,7 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                <h4>Soyad</h4>
+                <h4>Soyad <span class="text-danger"> *</span></h4>
                 @Html.EditorFor(model => model.SurName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SurName, "", new { @class = "text-danger" })
             </div>
@@ -33,7 +36,7 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                <h4>Mail</h4>
+                <h4>Mail <span class="text-danger"> *</span></h4>
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
@@ -41,7 +44,7 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                <h4>Şifre</h4>
+                <h4>Şifre <span class="text-danger"> *</span></h4>
                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
@@ -49,7 +52,7 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                <h4>Durum</h4>
+                <h4>Durum <span class="text-danger"> *</span></h4>
                 <div class="checkbox">
                     @Html.EditorFor(model => model.IsActive)
                     @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
@@ -59,7 +62,7 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                <h4>Rol</h4>
+                <h4>Rol <span class="text-danger"> *</span></h4>
                 @Html.DropDownList("RoleId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
             </div>
@@ -69,7 +72,7 @@
         <div class="form-group">
 
             <div class="col-md-10">
-                <h4>Erkek</h4>
+                <h4>Erkek </h4>
                 <div class="checkbox">
                     @Html.EditorFor(model => model.UserDetails.Gender)
                     @Html.ValidationMessageFor(model => model.UserDetails.Gender, "", new { @class = "text-danger" })

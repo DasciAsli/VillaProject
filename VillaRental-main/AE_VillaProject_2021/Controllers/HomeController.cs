@@ -19,12 +19,12 @@ namespace AE_VillaProject_2021.Controllers
 
         public ActionResult Index()
         {
-            tdp.Sehirler = new SelectList(db.Towns, "TowndId", "Name");
-            tdp.İlceler = new SelectList(db.District, "DistrictId", "Name");
+            tdp.Sehirler = new SelectList(db.Towns.Where(y => y.IsActive == true).ToList(), "TowndId", "Name");
+            tdp.İlceler = new SelectList(db.District.Where(z => z.IsActive == true).ToList(), "DistrictId", "Name");
             var categories = db.Categories.Where(x => x.IsActive == true).ToList();
             var products = db.Products.Where(x => x.IsActive == true).OrderByDescending(x => x.ProductId).Take(6).ToList();
             ViewBag.tdp = tdp;
-            ViewBag.Category = new SelectList(db.Categories, "CategoryId", "Name");
+            ViewBag.Category = new SelectList(db.Categories.Where(x=>x.IsActive== true).ToList(), "CategoryId", "Name");
             var user = (string)Session["Name"];
             ViewBag.User = db.Users.Where(x => x.Name == user).ToList();
             return View(products);
@@ -35,7 +35,7 @@ namespace AE_VillaProject_2021.Controllers
         {
             var ilceler = (from x in db.District
                            join y in db.Towns on x.Towns.TowndId equals y.TowndId
-                           where x.Towns.TowndId == p
+                           where x.Towns.TowndId == p && x.IsActive==true
                            select new
                            {
                                Text = x.Name,
@@ -47,7 +47,7 @@ namespace AE_VillaProject_2021.Controllers
         {
             var bölgeler = (from x in db.Province
                             join y in db.District on x.District.DistrictId equals y.DistrictId
-                            where x.District.DistrictId == p
+                            where x.District.DistrictId == p && x.IsActive == true
                             select new
                             {
                                 Text = x.Name,
@@ -87,9 +87,9 @@ namespace AE_VillaProject_2021.Controllers
             var username = (string)Session["Name"];
             var user = db.Users.Where(x => x.Name == username).ToList();
             ViewBag.User = user;
-            tdp.Sehirler = new SelectList(db.Towns, "TowndId", "Name");
-            tdp.İlceler = new SelectList(db.District, "DistrictId", "Name");
-            tdp.Bölgeler = new SelectList(db.Province, "ProvinceId", "Name");
+            tdp.Sehirler = new SelectList(db.Towns.Where(x=>x.IsActive==true).ToList(), "TowndId", "Name");
+            tdp.İlceler = new SelectList(db.District.Where(x => x.IsActive == true).ToList(), "DistrictId", "Name");
+            tdp.Bölgeler = new SelectList(db.Province.Where(x => x.IsActive == true).ToList(), "ProvinceId", "Name");
             ViewBag.tdp = tdp;
             var model = db.Products.Where(u => u.IsActive == true).ToList();
             if (page == null || page.Value == 1)
@@ -272,6 +272,9 @@ namespace AE_VillaProject_2021.Controllers
         }
         public ActionResult Sirala(int? page, int? sirala)
         {
+            var username = (string)Session["Name"];
+            var user = db.Users.Where(x => x.Name == username).ToList();
+            ViewBag.User = user;
             tdp.Sehirler = new SelectList(db.Towns, "TowndId", "Name");
             tdp.İlceler = new SelectList(db.District, "DistrictId", "Name");
             tdp.Bölgeler = new SelectList(db.Province, "ProvinceId", "Name");
@@ -297,6 +300,46 @@ namespace AE_VillaProject_2021.Controllers
                 else
                 {
                     var model = db.Products.Where(u => u.IsActive == true).OrderByDescending(u => u.Price).ToList();
+                    List<Products> yenidizi1 = new List<Products>();
+                    foreach (var item in model)
+                    {
+                        yenidizi1.Add(item);
+                    }
+                    List<Products> yenidizi2 = new List<Products>();
+                    int favoriderecesi = 0;
+                    foreach (var item in yenidizi1.ToList())
+                    {                     
+                        if (db.FavoriProducts.Where(x => x.ProductId == item.ProductId).ToList().Count() <= favoriderecesi)
+                        {
+                            if (yenidizi2.Where(x=>x.ProductId==item.ProductId).Count()<1)
+                            {
+                                yenidizi2.Add(item);
+                                yenidizi1.Remove(item);
+                            }                  
+                            foreach (var item2 in yenidizi1.ToList())
+                            {
+                                if (db.FavoriProducts.Where(x => x.ProductId == item.ProductId).ToList().Count()== db.FavoriProducts.Where(x => x.ProductId == item2.ProductId).ToList().Count())
+                                {
+                                    yenidizi2.Add(item2);
+                                    yenidizi1.Remove(item2);
+                                }
+                            }
+                            favoriderecesi = db.FavoriProducts.Where(x => x.ProductId == item.ProductId).ToList().Count() + 1;
+                        }
+                        else
+                        {
+                            favoriderecesi = db.FavoriProducts.Where(x => x.ProductId == item.ProductId).ToList().Count() + 1;
+                        }
+                        
+                    }
+                    
+                    List<Products> yenidizi3 = new List<Products>();
+                    foreach (var item in yenidizi2.ToList())
+                    {
+                        yenidizi3.Add(yenidizi2.Last());
+                        yenidizi2.Remove(yenidizi2.Last());
+                    }
+                    model = yenidizi3;
                     ViewBag.PageList = model.ToList().ToPagedList(page.Value, 6);
                     return View("VillaList", model.ToList().ToPagedList(page.Value, 6));
                 }
@@ -321,6 +364,40 @@ namespace AE_VillaProject_2021.Controllers
                 {
 
                     var model = db.Products.Where(u => u.IsActive == true).OrderByDescending(u => u.Price).ToList();
+                    List<Products> yenidizi1 = new List<Products>();
+                    foreach (var item in model)
+                    {
+                        yenidizi1.Add(item);
+                    }
+                    List<Products> yenidizi2 = new List<Products>();
+                    int favoriderecesi = 0;
+                    foreach (var item in yenidizi1.ToList())
+                    {
+                        if (db.FavoriProducts.Where(x => x.ProductId == item.ProductId).ToList().Count() <= favoriderecesi)
+                        {
+                            yenidizi2.Add(item);
+                            yenidizi1.Remove(item);
+                            foreach (var item2 in yenidizi1.ToList())
+                            {
+                                if (db.FavoriProducts.Where(x => x.ProductId == item.ProductId).ToList().Count() == db.FavoriProducts.Where(x => x.ProductId == item2.ProductId).ToList().Count())
+                                {
+                                    yenidizi2.Add(item2);
+                                    yenidizi1.Remove(item2);
+                                }
+                            }
+
+                            favoriderecesi = db.FavoriProducts.Where(x => x.ProductId == item.ProductId).ToList().Count() + 1;
+
+                        }
+                    }
+                    List<Products> yenidizi3 = new List<Products>();
+                    foreach (var item in yenidizi2.ToList())
+                    {
+                        yenidizi3.Add(yenidizi2.Last());
+                        yenidizi2.Remove(yenidizi2.Last());
+                    }
+                    model = yenidizi3;
+
                     ViewBag.PageList = model.ToList().ToPagedList(page.Value, 6);
                     return View("VillaList", model.ToList().ToPagedList(page.Value, 6));
                 }

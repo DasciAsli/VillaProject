@@ -92,6 +92,14 @@ namespace AE_VillaProject_2021.Areas.ManagementPanel.Controllers
                 Province update = db.Province.Find(province.ProvinceId);
                 update.Name = province.Name;
                 update.IsActive = province.IsActive;
+                if (update.IsActive==false)
+                {
+                    var villalar = db.Products.Where(x => x.ProductAddresses.ProvinceId == province.ProvinceId).ToList();
+                    foreach (var item in villalar)
+                    {
+                        item.IsActive = false;
+                    }
+                }
                 update.RegisterDate = DateTime.Now;
                 update.DistrictId = province.DistrictId;
                 db.SaveChanges();

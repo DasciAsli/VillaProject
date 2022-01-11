@@ -88,6 +88,41 @@ namespace AE_VillaProject_2021.Areas.ManagementPanel.Controllers
                 Towns update = db.Towns.Find(towns.TowndId);
                 update.Name = towns.Name;
                 update.IsActive = towns.IsActive;
+                if (update.IsActive==false)
+                {
+                    var ilceler = db.District.Where(x => x.TownId == towns.TowndId).ToList();
+                    foreach (var item in ilceler)
+                    {
+                        item.IsActive = false;
+                        foreach (var item2 in item.Province)
+                        {
+                            item2.IsActive = false;
+                        }
+                    }
+                    var villalar = db.Products.Where(x => x.ProductAddresses.TownId == towns.TowndId).ToList();
+                    foreach (var item in villalar)
+                    {
+                        item.IsActive = false;
+                    }
+                }
+                if (update.IsActive == true)
+                {
+                    var ilceler = db.District.Where(x => x.TownId == towns.TowndId).ToList();
+                    foreach (var item in ilceler)
+                    {
+                        item.IsActive = true;
+                        foreach (var item2 in item.Province)
+                        {
+                            item2.IsActive = true;
+                        }
+                    }
+                    var villalar = db.Products.Where(x => x.ProductAddresses.TownId == towns.TowndId).ToList();
+                    foreach (var item in villalar)
+                    {
+                        item.IsActive = true;
+                    }
+                }
+
                 update.RegisterDate = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");

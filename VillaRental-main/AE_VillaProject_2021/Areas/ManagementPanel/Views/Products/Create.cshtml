@@ -7,6 +7,9 @@
 
 <script src="~/Areas/ManagementPanel/Content/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
 <h2>Yeni Villa Ekle</h2>
+<div class="alert alert-primary">
+    <strong class="text-danger"> *   </strong>ile işaretli alanların doldurulması zorunludur.
+</div>
 
 @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -19,7 +22,7 @@
         <div class="form-group">
 
             <div class="col-md-10">
-                @Html.Label("Başlık")
+                @Html.Label("Başlık") <span class="text-danger"> *</span>
                 @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
@@ -28,7 +31,7 @@
         <div class="form-group">
 
             <div class="col-md-10">
-                @Html.Label("Altbaşlık")
+                @Html.Label("Altbaşlık")<span class="text-danger"> *</span>
                 @Html.EditorFor(model => model.SubTitle, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SubTitle, "", new { @class = "text-danger" })
             </div>
@@ -37,7 +40,7 @@
         <div class="form-group">
 
             <div class="col-md-10">
-                @Html.Label("Açıklama")
+                @Html.Label("Açıklama")<span class="text-danger"> *</span>
                 @Html.TextAreaFor(model => model.Description, 10, 116, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
@@ -54,7 +57,7 @@
         <div class="form-group">
 
             <div class="col-md-10">
-                @Html.Label("Fiyat")
+                @Html.Label("Fiyat")<span class="text-danger"> *</span>
                 @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
@@ -62,7 +65,7 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                @Html.Label("Metrekare")
+                @Html.Label("Metrekare")<span class="text-danger"> *</span>
                 @Html.EditorFor(model => model.Metrekare, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Metrekare, "", new { @class = "text-danger" })
             </div>
@@ -70,7 +73,7 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                @Html.Label("Durum")
+                @Html.Label("Durum")<span class="text-danger"> *</span>
                 <div class="checkbox">
                     @Html.EditorFor(model => model.IsActive)
                     @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
@@ -86,7 +89,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-10">
-                <p>Kategoriler</p>
+                <p>Kategoriler <span class="text-danger"> *</span></p>
                 @if (ViewBag.CategoryId != null)
                 {
                     foreach (var item in (List<AE_VillaProject_2021.Models.EntityFramework.Categories>)ViewBag.CategoryId)
@@ -102,42 +105,42 @@
         </div>
         <div class="form-group">
             <div class="col-md-10">
-                @Html.Label("Oda Sayısı")
+                @Html.Label("Oda Sayısı")<span class="text-danger"> *</span>
                 @Html.EditorFor(model => model.ProductDetails.RoomCount, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProductDetails.RoomCount, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-10">
-                @Html.Label("Banyo Sayısı")
+                @Html.Label("Banyo Sayısı")<span class="text-danger"> *</span>
                 @Html.EditorFor(model => model.ProductDetails.BathCount, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProductDetails.BathCount, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-10">
-                @Html.Label("Balkon Sayısı")
+                @Html.Label("Balkon Sayısı")<span class="text-danger"> *</span>
                 @Html.EditorFor(model => model.ProductDetails.BalconyCount, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProductDetails.BalconyCount, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-10">
-                @Html.Label("Garaj Sayısı")
+                @Html.Label("Garaj Sayısı")<span class="text-danger"> *</span>
                 @Html.EditorFor(model => model.ProductDetails.GarageCount, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProductDetails.GarageCount, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-10">
-                @Html.Label("Havuz Sayısı")
+                @Html.Label("Havuz Sayısı")<span class="text-danger"> *</span>
                 @Html.EditorFor(model => model.ProductDetails.PoolCount, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProductDetails.PoolCount, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-10">
-                @Html.Label("Kişi Sayısı")
+                @Html.Label("Kişi Sayısı")<span class="text-danger"> *</span>
                 @Html.EditorFor(model => model.ProductDetails.PersonCount, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProductDetails.PersonCount, "", new { @class = "text-danger" })
             </div>
@@ -270,28 +273,28 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                @Html.Label("Adres")
+                @Html.Label("Adres")<span class="text-danger"> *</span>
                 @Html.TextAreaFor(model => model.ProductAddresses.Adress, 5, 116, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ProductAddresses.Adress, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-10">
-                @Html.Label("Şehir")
+                @Html.Label("Şehir")<span class="text-danger"> *</span>
                 @Html.DropDownList("TowndId", (IEnumerable<SelectListItem>)ViewBag.tdp.Sehirler,"Şehir Seçiniz", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ProductAddresses.Towns.TowndId, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group ">
             <div class="col-md-10">
-                @Html.Label("İlçe")
+                @Html.Label("İlçe")<span class="text-danger"> *</span>
                 @Html.DropDownList("DistrictId", (IEnumerable<SelectListItem>)ViewBag.tdp.İlceler, "İlçe Seçiniz", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ProductAddresses.District.DistrictId, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group ">
             <div class="col-md-10">
-                @Html.Label("Bölge")
+                @Html.Label("Bölge")<span class="text-danger"> *</span>
                 @Html.DropDownList("ProvinceId", (IEnumerable<SelectListItem>)ViewBag.tdp.Bölgeler, "Bölge Seçiniz", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ProductAddresses.Province.ProvinceId, "", new { @class = "text-danger" })
             </div>
