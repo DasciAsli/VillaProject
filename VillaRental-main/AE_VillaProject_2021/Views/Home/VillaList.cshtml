@@ -70,6 +70,12 @@
                                         <option name="kisiSayisi" value="8">8</option>
                                         <option name="kisiSayisi" value="9">9</option>
                                         <option name="kisiSayisi" value="10">10</option>
+                                        <option name="kisiSayisi" value="11">11</option>
+                                        <option name="kisiSayisi" value="12">12</option>
+                                        <option name="kisiSayisi" value="13">13</option>
+                                        <option name="kisiSayisi" value="14">14</option>
+                                        <option name="kisiSayisi" value="15">15</option>
+                                        <option name="kisiSayisi" value="16">16</option>
                                         @*@foreach (var item in Model.Where(u => u.ProductDetails.PersonCount != null).OrderBy(u => u.ProductDetails.PersonCount).ToList())
                                             {
                                             <option value="@item.ProductDetails.PersonCount">@item.ProductDetails.PersonCount</option>
@@ -155,15 +161,14 @@
                         </div>
                         <div class="collapse show" id="type-property">
                             <ul class="list-unstyled mb-0 pt-3">
-                                @foreach (var item in Model)
-                                {
-                                    foreach (var kategori in item.Categories)
+                                
+                                    @foreach (var kategori in (List<AE_VillaProject_2021.Models.EntityFramework.Categories>)ViewBag.Categories)
                                     {
 
-                                        <li><a href="@Url.Action("VillaList","Home",new {id=kategori.CategoryId })">@kategori.Name<span class="ms-auto">@kategori.Products.Count()</span></a></li>
+                                        <li><a href="@Url.Action("VillaList","Home",new {id=kategori.CategoryId })">@kategori.Name<span class="ms-auto">@kategori.Products.Where(x=>x.IsActive==true).Count()</span></a></li>
 
                                     }
-                                }
+                                
                             </ul>
                         </div>
                     </div>

@@ -97,11 +97,13 @@ namespace AE_VillaProject_2021.Controllers
                 if (id == null)
                 {
                     ViewBag.Pagelist = model.ToList().ToPagedList(1, 6);
+                    ViewBag.Categories = db.Categories.Where(x => x.IsActive == true).ToList();
                     return View(model.ToPagedList(1, 6));
                 }
                 else
                 {
                     var yok = db.Products.Where(u => u.IsActive == true).Where(u => u.Categories.Any(p => p.CategoryId == id.Value)).ToList();
+                    ViewBag.Categories = db.Categories.Where(x => x.IsActive == true).ToList();
                     ViewBag.Pagelist = yok.ToList().ToPagedList(1, 6);
                     return View(yok.ToPagedList(1, 6));
                 }
@@ -110,6 +112,7 @@ namespace AE_VillaProject_2021.Controllers
             {
                 if (id == null)
                 {
+                    ViewBag.Categories = db.Categories.Where(x => x.IsActive == true).ToList();
                     ViewBag.Pagelist = model.ToList().ToPagedList(1, 6);
                     return View(model.ToPagedList(1, 6));
                 }
@@ -137,6 +140,7 @@ namespace AE_VillaProject_2021.Controllers
             tdp.İlceler = new SelectList(db.District, "DistrictId", "Name");
             tdp.Bölgeler = new SelectList(db.Province, "ProvinceId", "Name");
             ViewBag.tdp = tdp;
+            ViewBag.Categories = db.Categories.Where(x => x.IsActive == true).ToList();
             //kat sayımız yok !!!!
             var model = db.Products.Where(u => u.IsActive == true).ToList();
             if (villaList.kisiSayisi != null && villaList.yatakSayisi != null && villaList.banyo != null && villaList.Kat != null && villaList.metrekare != null && villaList.TowndId != 0 && villaList.ProvinceId != 0 && villaList.DistrictId != 0 && villaList.min != null && villaList.max != null)
@@ -279,6 +283,7 @@ namespace AE_VillaProject_2021.Controllers
             tdp.İlceler = new SelectList(db.District, "DistrictId", "Name");
             tdp.Bölgeler = new SelectList(db.Province, "ProvinceId", "Name");
             ViewBag.tdp = tdp;
+            ViewBag.Categories = db.Categories.Where(x => x.IsActive == true).ToList();
             if (page == null)
             {
                 page = 1;
@@ -594,6 +599,13 @@ namespace AE_VillaProject_2021.Controllers
             }
 
             return PartialView(contactvalues);
+        }
+
+        public ActionResult Page404()
+        {
+            Response.StatusCode = 404;
+            Response.TrySkipIisCustomErrors = true;
+            return View();
         }
 
     }

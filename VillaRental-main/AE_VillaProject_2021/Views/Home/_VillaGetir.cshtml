@@ -14,16 +14,22 @@
             <div class="col-sm-6 col-md-4">
                 <div class="property-item">
                     <div class="property-image bg-overlay-gradient-04">
-                        @foreach (var item2 in item.ProductImages.Where(x => x.IsActive == true).OrderBy(x => x.ProductImage).Take(1))
+                        @if (item.ProductImages.Count == 0)
                         {
-                            <img class="img-fluid" src="@item2.ImageUrl" alt="">
+                            <img class="d-block w-100" src="~/Areas/ManagementPanel/Content/assets/images/defaultimage.jpg" alt="First slide">
+                        }
+                        else
+                        { 
+
+                             foreach (var item2 in item.ProductImages.Where(x => x.IsActive == true).OrderBy(x => x.ProductImage).Take(1))
+                        {
+                    <img class="img-fluid" src="@item2.ImageUrl" alt="">}
                         }
 
                         <div class="property-lable">
                             @foreach (var item2 in item.Categories.Where(x => x.IsActive == true).OrderBy(x => x.CategoryId).Take(1))
                             {
-                                <span class="badge badge-md bg-primary">@item2.Name</span>
-                            }
+                    <span class="badge badge-md bg-primary">@item2.Name</span>}
                         </div>
                         <span class="property-trending" title="trending"><i class="fas fa-bolt"></i></span>
 

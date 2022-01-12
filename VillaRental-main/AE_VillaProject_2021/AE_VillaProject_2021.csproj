@@ -1526,6 +1526,7 @@
     <Content Include="Views\Home\_VillaGetir.cshtml" />
     <Content Include="Views\Home\Kirala.cshtml" />
     <Content Include="Views\Home\Bill.cshtml" />
+    <Content Include="Views\Home\Page404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
